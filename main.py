@@ -1,6 +1,8 @@
 
 import random 
 
+from resources.nekos import neko
+
 from fastapi import FastAPI
 
 app = FastAPI()
@@ -13,6 +15,7 @@ async def root():
 
 @app.get("/neko")
 async def Nekos():
-    string = {"url": "example.url"}
+    url = random.choice(neko)
+    string = {"url": url}
     return string 
      
