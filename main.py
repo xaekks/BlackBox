@@ -7,7 +7,7 @@ app = FastAPI()
 
 @app.get("/")
 async def root():
-    string = {"hello?"}
+    string = {"welcome to nandha-api"}
     return string
 
 
