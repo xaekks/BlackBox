@@ -1,7 +1,6 @@
 
-import random, strings
+import random, strings , resources
 
-from resources.nekos import neko
 
 from fastapi import FastAPI
 
@@ -13,8 +12,23 @@ async def root():
 
 
 @app.get("/neko")
-async def Nekos():
-    url = random.choice(neko)
+async def neko():
+    url = random.choice(resources.nekos.neko)
     string = {"url": url}
-    return string 
+    return string
+
+
+@app.get("/ward"):
+async def ward():
+     ward_list = resources.games.COMMON_WARDS
+     random.shuffle(ward_list)
+     ward = random.choice(ward_list)
+     chars = list(ward)
+     quess = '-'.join(chars)
+     return {
+        "guess": guess,
+        "ward": ward
+     }
+
+    
      
