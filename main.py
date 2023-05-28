@@ -21,16 +21,16 @@ async def neko():
     return string
 
 
-@app.get("/ward")
+@app.get("/word")
 async def ward():
-     ward_list = games.COMMON_WORDS
+     words_list = games.COMMON_WORDS
      random.shuffle(ward_list)
-     ward = random.choice(ward_list)
-     chars = list(ward)
-     quess = '-'.join(chars)
+     word = random.choice(words_list)
+     chars = list(word)
+     guess = '-'.join(chars)
      return {
         "guess": guess,
-        "ward": ward
+        "word": word
      }
 
     
