@@ -1,5 +1,5 @@
 
-import random 
+import random, strings
 
 from resources.nekos import neko
 
@@ -9,8 +9,7 @@ app = FastAPI()
 
 @app.get("/")
 async def root():
-    string = "welcome to Nandha-Api"
-    return string
+    return strings.home
 
 
 @app.get("/neko")
