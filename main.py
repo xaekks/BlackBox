@@ -27,6 +27,7 @@ async def ward():
      random.shuffle(words_list)
      word = random.choice(words_list)
      chars = list(word)
+     random.shuffle(chars)
      guess = '-'.join(chars)
      return {
         "guess": guess,
