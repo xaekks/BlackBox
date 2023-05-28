@@ -23,7 +23,7 @@ async def neko():
 
 @app.get("/ward")
 async def ward():
-     ward_list = games.COMMON_WARDS
+     ward_list = games.COMMON_WORDS
      random.shuffle(ward_list)
      ward = random.choice(ward_list)
      chars = list(ward)
