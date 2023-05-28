@@ -24,7 +24,7 @@ async def neko():
 @app.get("/word")
 async def ward():
      words_list = games.COMMON_WORDS
-     random.shuffle(ward_list)
+     random.shuffle(words_list)
      word = random.choice(words_list)
      chars = list(word)
      guess = '-'.join(chars)
