@@ -9,7 +9,7 @@ app = FastAPI()
 
 @app.get("/")
 async def root():
-    return strings.home
+    return strings.HOME
 
 
 @app.get("/neko")
