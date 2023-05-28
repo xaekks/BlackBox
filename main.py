@@ -18,7 +18,7 @@ async def neko():
     return string
 
 
-@app.get("/ward"):
+@app.get("/ward")
 async def ward():
      ward_list = resources.games.COMMON_WARDS
      random.shuffle(ward_list)
