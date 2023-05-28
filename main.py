@@ -10,7 +10,7 @@ app = FastAPI()
 
 @app.get("/")
 async def root():
-    return {"HOME = "WELCOME TO NANDHA-API"}
+    return {"WELCOME TO NANDHA-API"}
 
 
 
