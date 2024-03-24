@@ -1,4 +1,4 @@
 fastapi
 uvicorn
 requests==2.31.0
-lexica-api
+lexica-api==1.5.7
