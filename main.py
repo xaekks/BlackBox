@@ -3,7 +3,7 @@ import random, strings
 
 from resources import nekos, games
 
-
+from lexica import AsyncClient
 from fastapi import FastAPI
 
 app = FastAPI()
@@ -19,6 +19,32 @@ async def neko():
     url = random.choice(nekos.neko)
     string = {"url": url}
     return string
+
+
+
+
+@app.get("/chatbot/{model}/{prompt}")
+async def AI_CHAT(model: str, prompt: str):
+    AI_MODEL = {
+        "bard",
+        "gpt",
+        "gemini",
+        "llama",
+        "mistral",
+        "palm"
+    }
+
+    if model not in AI_MODEL:
+        x = f"try valid model: {AI_MODEL}"
+        return x
+    else:
+        try:
+            client = AsyncClient()
+            language_model = getattr(locals()[model], model)
+            response = await client.ChatCompletion(prompt, language_model)
+            return response
+        except Exception as e:
+            return str(e)
 
 
 @app.get("/word")
