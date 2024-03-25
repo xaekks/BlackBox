@@ -1,4 +1,4 @@
-fastapi
+fastapi==0.110.0
 uvicorn
 requests==2.31.0
-lexica-api==1.5.7
+
