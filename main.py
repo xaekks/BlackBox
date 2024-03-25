@@ -1,9 +1,6 @@
 
-import random, strings
-
+import random, strings, requests
 from resources import nekos, games
-
-
 from fastapi import FastAPI
 
 app = FastAPI()
