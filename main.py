@@ -3,7 +3,7 @@ import random, strings
 
 from resources import nekos, games
 
-from lexica import AsyncClient
+
 from fastapi import FastAPI
 
 app = FastAPI()
@@ -20,13 +20,14 @@ async def neko():
     string = {"url": url}
     return string
 
-url = "https://lexica.qewertyy.dev/models?model_id={id}&prompt={prompt}"
+
 @app.get("/ai/{model}/{prompt}")
 async def chatbot(model, prompt):
      models = {
           'bard': 20,
           'gpt': 5,
           'palm': 1}
+     url = "https://lexica.qewertyy.dev/models?model_id={id}&prompt={prompt}"
      names = list(models.keys())
      if model not in names:
            return "available model names: bard, gpt, palm"
