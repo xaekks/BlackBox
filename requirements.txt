@@ -1,4 +1,5 @@
 fastapi
 uvicorn
 requests==2.31.0
+cleverbotfreeapi==1.1.1
 
