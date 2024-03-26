@@ -11,14 +11,14 @@ async def root():
 
 
 
-@app.get("/neko")
+@app.get("/neko", tags=['images'])
 async def neko():
     url = random.choice(nekos.neko)
     string = {"url": url}
     return string
 
 
-@app.get("/ai/{model}/{prompt}")
+@app.get("/ai/{model}/{prompt}", tags=['AI'])
 async def chatbot(model, prompt):
      models = {
           'bard': 20,
@@ -30,12 +30,12 @@ async def chatbot(model, prompt):
            return "available model names: bard, gpt, palm"
      else:
          id = models[model]
-         response = requests.get(url.format(id=id, prompt=prompt)).json()
+         response = requests.post(url.format(id=id, prompt=prompt)).json()
          return response 
 
 
 
-@app.get("/word")
+@app.get("/word", tags=['tools'])
 async def ward():
      words_list = games.COMMON_WORDS
      random.shuffle(words_list)
