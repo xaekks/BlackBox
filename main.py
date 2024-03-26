@@ -1,7 +1,8 @@
 
-import random, strings, requests
+import random, strings, requests, cleverbotfreeapi, json
 from resources import nekos, games
 from fastapi import FastAPI
+
 
 app = FastAPI()
 
@@ -17,14 +18,20 @@ async def neko():
     string = {"url": url}
     return string
 
+@app.get("chatbot", tags=['AI'])
+async def chatbot(prompt):
+     res = cleverbotfreeapi.cleverbot(prompt)
+     respon = json.dumps({'text', res})
+     response = json.loads(respon)
+     return response 
 
 @app.get("/ai/{model}/{prompt}", tags=['AI'])
-async def chatbot(model, prompt):
+async def ai_models(model, prompt):
      models = {
           'bard': 20,
           'gpt': 5,
           'palm': 1}
-     url = "https://lexica.qewertyy.dev/models?model_id={id}&prompt={prompt}"
+     url = f"https://lexica.qewertyy.dev/models?model_id={id}&prompt={prompt}"
      names = list(models.keys())
      if model not in names:
            return "available model names: bard, gpt, palm"
