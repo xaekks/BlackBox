@@ -8,14 +8,14 @@ import json
 from resources import anime, game
 
 from fastapi import FastAPI
-
+from fastapi.responses import FileResponse
 
 app = FastAPI()
 
-@app.get("/")
-async def root():
-    return {"WELCOME TO NANDHA-API"}
-
+@app.get("/", include_in_schema=False)
+def serve_index():
+    index_file = "index.html"
+    return FileResponse(index_file)
 
 
 @app.get("/neko", tags=['images'])
