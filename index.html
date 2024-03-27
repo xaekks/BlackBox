@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>TOFU API</title>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+    <!-- <link rel="stylesheet" href="static/style.css"> -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Secular+One&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@700&display=swap');
+
+        body {
+            /* background: url(https://te.legra.ph/file/e98afa90902e3c238bbdb.png); */
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-size: 200% 200%;
+            background-attachment: fixed;
+            background-image: linear-gradient(45deg, #3498db 0%, #8e44ad 55%, #3498db 100%);
+            animation: gradient 5s ease infinite;
+        }
+
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .square {
+          position: absolute;
+          border: 0.125em solid #ffffff; /* Change the border color to white */
+          background-color: transparent;
+          opacity: 0.5;
+          z-index: -1;
+        }
+
+        .circle {
+          position: absolute;
+          border: 0.125em solid #ffffff; /* Change the border color to white */
+          background-color: transparent;
+          opacity: 0.5;
+          border-radius: 50%;
+          z-index: -1;
+        }
+
+        .box{
+            width: 450px;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 2.5em;
+            text-align: center;
+            margin: auto;
+            margin-top: 5%;
+            border-radius: 15%;
+            box-shadow: -0.938em -0.938em 0.938em rgba(62, 16, 177, 0.2),
+                        0.938em 0.938em 0.938em rgba(0,0,0,0.1),
+                        inset -0.313em -0.313em 0.313em rgba(255, 255, 255, 0.2),
+                        inset 0.313em 0.313em 0.313em rgba(0,0,0,0.1);
+          }
+
+          @media screen and (max-width: 600px) {
+              .box {
+                  width: 90%; /* Increase the width on small screens */
+                  padding: 10px;
+              }
+          }
+        .topdp-1{
+          width: 50%;
+          border: solid black 0.125em;
+            border-radius: 50% 50%  50% 50%;
+        }
+
+        @keyframes dash {
+            to {
+                background-position: 100% 0%, 0% 100%, 0% 0%, 100% 100%;
+            }
+        }
+
+        .toph-1{
+            font-family:'Secular One', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.313em;
+            color: #fff;
+            -webkit-box-reflect:below 0.063em linear-gradient(transparent,#0008) ;
+            line-height:0.70cm;
+            outline:none;
+        }
+        p{
+            color:#fff;
+            margin-top: 1.875em;
+            font-family: 'Roboto Mono', monospace;
+            font-size: 1em;
+            cursor: pointer;
+            transition: 0.5s;    
+        }
+
+        /* Scroll Bar CSS--------------------------------------------------------------------------------------------------------------------------------*/
+        /* width */
+        ::-webkit-scrollbar {
+            /* width: 0.063em; */
+            display: none;
+          }
+
+          /* Social Icons CSS----------------------------------------------------------------------------------------------------------------------------*/
+          ul{
+            margin: 0;
+            padding: 0;
+          }
+          .Social li{
+            display: inline-block;
+            margin: 0.375em;
+            list-style: none;
+          }
+          .Social li a{
+            color: black;
+            text-decoration: none;
+            font-size: 2.5em;
+            transition: all ease-in-out 250ms;
+          }
+          .Social li a:hover{
+            color: white;
+            text-shadow: 0.063em 0.063em #6b6868;
+          }
+          /*-------------------------------------------------------------------------------------------*/
+          .prevent-select {
+            -webkit-user-select: none; /* Safari */
+            -ms-user-select: none; /* IE 10 and IE 11 */
+            user-select: none; /* Standard syntax */
+          }
+
+          .custom-btn {
+            width: 130px;
+            height: 40px;
+            color: #fff;
+            border-radius: 5px;
+            padding: 10px 25px;
+            font-family: 'Lato', sans-serif;
+            font-weight: 500;
+            background: black;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            display: inline-block;
+            box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+            7px 7px 20px 0px rgba(0,0,0,.1),
+            4px 4px 5px 0px rgba(0,0,0,.1);
+            outline: none;
+          }
+
+
+          .btn-16 {
+            border: none;
+            color: #fff;
+          }
+          .btn-16:after {
+            position: absolute;
+            content: "";
+            width: 0;
+            height: 100%;
+            top: 0;
+            left: 0;
+            direction: rtl;
+            z-index: -1;
+            box-shadow:
+            -7px -7px 20px 0px #0002,
+            -4px -4px 5px 0px #0001,
+            7px 7px 20px 0px #fff9,
+            4px 4px 5px 0px #fff9;
+            transition: all 0.3s ease;
+          }
+          .btn-16:hover {
+            color: #fff;
+          }
+          .btn-16:hover:after {
+            left: auto;
+            right: 0;
+            width: 100%;
+          }
+          .btn-16:active {
+            top: 2px;
+          }
+
+          .apiweb a {
+              text-decoration: none;
+              color: inherit;
+          }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <img alt="LOGO" class="topdp-1">
+        <h1 class="toph-1">NANDHA-API</h1>
+        <p class="prevent-select">I will upload my all APIs here <br> |•|Build with Python-FastAPI|•|</p>
+      <div class="Social">
+        <ul>
+        <li><a href="https://github.com/nandhaxd" target="_blank"><i class="fa-brands fa-github"></i></a></li>
+        <!-- <li><a href="https://www.youtube.com/@" target="_blank"><i class="fa-brands fa-youtube"></i></a></li> -->
+        <li><a href="https://telegram.me/nandha" target="_blank"><i class="fa-brands fa-telegram"></i></a></li>
+        <!-- <li><a href="https://twitter.com/aditya_6313" target="_blank"><i class="fa-brands fa-twitter"></i></a></li> -->
+        <li><a href="https://instagram.com/darlingonelife" target="_blank"><i class="fa-brands fa-instagram"></i></a></li>
+        <li><a href="mailto:nandhaxd@gmail.com" target="_blank"><i class="fa-solid fa-envelope"></i></a></li>
+      </ul>
+    </div>
+    <div class="apiweb">
+        <a href="http://nandha-api.onrender.com/docs/"><button type="button" class="custom-btn btn-16" ">Read Docs</button></a>
+    </div>
+</div>
+
+<script>
+function docs(){
+    window.open("https://nandha-api.onrender.com/docs");
+}
+window.onload = function() {
+
+  const squares = [];
+  for (let i = 0; i < 25; i++) {
+      let square = document.createElement('div');
+      square.className = 'square';
+      square.style.width = `${Math.random() * 50}px`;
+      square.style.height = square.style.width;
+      square.style.left = `${Math.random() * window.innerWidth}px`;
+      square.style.top = `${Math.random() * window.innerHeight}px`;
+      document.body.appendChild(square);
+      squares.push({
+          element: square,
+          speedX: Math.random() * 4 - 2,
+          speedY: Math.random() * 4 - 2
+      });
+  }
+
+  setInterval(() => {
+      squares.forEach((squareA, indexA) => {
+          let rectA = squareA.element.getBoundingClientRect();
+
+          squares.forEach((squareB, indexB) => {
+              if (indexA !== indexB) {
+                  let rectB = squareB.element.getBoundingClientRect();
+
+                  if (rectA.left < rectB.right &&
+                      rectA.right > rectB.left &&
+                      rectA.top < rectB.bottom &&
+                      rectA.bottom > rectB.top) {
+                      // Collision detected, reverse speeds
+                      squareA.speedX = -squareA.speedX;
+                      squareA.speedY = -squareA.speedY;
+                      squareB.speedX = -squareB.speedX;
+                      squareB.speedY = -squareB.speedY;
+                  }
+              }
+          });
+
+          if (rectA.left < 0 || rectA.right > window.innerWidth) {
+              squareA.speedX = -squareA.speedX;
+          }
+          if (rectA.top < 0 || rectA.bottom > window.innerHeight) {
+              squareA.speedY = -squareA.speedY;
+          }
+
+          squareA.element.style.left = `${rectA.left + squareA.speedX}px`;
+          squareA.element.style.top = `${rectA.top + squareA.speedY}px`;
+      });
+  }, 100);
+
+
+  //Circles
+  const circles = [];
+  for (let i = 0; i < 25; i++) {
+      let circle = document.createElement('div');
+      circle.className = 'circle';
+      circle.style.width = `${Math.random() * 50}px`;
+      circle.style.height = circle.style.width;
+      circle.style.left = `${Math.random() * window.innerWidth}px`;
+      circle.style.top = `${Math.random() * window.innerHeight}px`;
+      document.body.appendChild(circle);
+      circles.push({
+          element: circle,
+          speedX: Math.random() * 4 - 2,
+          speedY: Math.random() * 4 - 2
+      });
+  }
+
+  setInterval(() => {
+      // Assuming circles is an array similar to squares
+      circles.forEach((circleA, indexA) => {
+          let rectA = circleA.element.getBoundingClientRect();
+
+          circles.forEach((circleB, indexB) => {
+              if (indexA !== indexB) {
+                  let rectB = circleB.element.getBoundingClientRect();
+
+                  let dx = (rectA.left + rectA.width / 2) - (rectB.left + rectB.width / 2);
+                  let dy = (rectA.top + rectA.height / 2) - (rectB.top + rectB.height / 2);
+                  let distance = Math.sqrt(dx * dx + dy * dy);
+
+                  if (distance < (rectA.width / 2 + rectB.width / 2)) {
+                      // Collision detected, reverse speeds
+                      circleA.speedX = -circleA.speedX;
+                      circleA.speedY = -circleA.speedY;
+                      circleB.speedX = -circleB.speedX;
+                      circleB.speedY = -circleB.speedY;
+                  }
+              }
+          });
+
+          if (rectA.left < 0 || rectA.right > window.innerWidth) {
+              circleA.speedX = -circleA.speedX;
+          }
+          if (rectA.top < 0 || rectA.bottom > window.innerHeight) {
+              circleA.speedY = -circleA.speedY;
+          }
+
+          circleA.element.style.left = `${rectA.left + circleA.speedX}px`;
+          circleA.element.style.top = `${rectA.top + circleA.speedY}px`;
+      });
+  }, 100);
+
+  
+  document.body.addEventListener('mousemove', e => {
+        let mouseX = e.clientX;
+        let mouseY = e.clientY;
+        squares.forEach(square => {
+            let rect = square.element.getBoundingClientRect();
+            let dx = rect.left + rect.width / 2 - mouseX;
+            let dy = rect.top + rect.height / 2 - mouseY;
+            let dist = Math.hypot(dx, dy);
+            if (dist < 150) {
+                let angle = Math.atan2(dy, dx);
+                square.speedX = Math.cos(angle) * 5;
+                square.speedY = Math.sin(angle) * 5;
+            }
+        });
+        circles.forEach(circle => {
+            let rect = circle.element.getBoundingClientRect();
+            let dx = rect.left + rect.width / 2 - mouseX;
+            let dy = rect.top + rect.height / 2 - mouseY;
+            let dist = Math.hypot(dx, dy);
+            if (dist < 150) {
+                let angle = Math.atan2(dy, dx);
+                circle.speedX = Math.cos(angle) * 5;
+                circle.speedY = Math.sin(angle) * 5;
+            }
+        });
+    });
+
+//   var images = [
+//     'https://te.legra.ph/file/2d7e674b01a6bdad37d3b.jpg',
+//     'https://te.legra.ph/file/9893c6b1b2d4a0eaf1aa9.jpg',
+//     'https://te.legra.ph/file/58fd2bcda18a82d2a7674.jpg',
+//     'https://te.legra.ph/file/f063b1d357e4ac16acf25.jpg',
+//     'https://te.legra.ph/file/60ee9bba8e074667f1867.jpg',
+//     'https://te.legra.ph/file/3dd1111bc9d4779c7e209.jpg',
+//     'https://te.legra.ph/file/a64a83a4a85e3a1f34f94.jpg',
+//     'https://te.legra.ph/file/e811885131a7686fe5645.jpg',
+//     'https://te.legra.ph/file/f1930675410436e25ddd2.jpg',
+//     'https://te.legra.ph/file/4b1895b1358527db0d518.jpg'
+//   ]
+
+  const images = [
+    'https://te.legra.ph/file/d6c1701de151028099a9e.jpg',
+    'https://te.legra.ph/file/086a1e7cc61d8fb632b15.jpg',
+    'https://te.legra.ph/file/7afaf9a39a72558fbf289.jpg',
+    'https://te.legra.ph/file/13e80b2d143358ac76387.jpg',
+    'https://te.legra.ph/file/995fc09765ee0c32fd814.jpg',
+    'https://te.legra.ph/file/0ab5adc61f5a9dc45eed2.jpg',
+    'https://te.legra.ph/file/bee61abae4e6450d4d630.jpg',
+    'https://te.legra.ph/file/e553f7989414431489408.jpg',
+    'https://te.legra.ph/file/5032beec9e1304af72e9d.jpg',
+    'https://te.legra.ph/file/f0a1c564386b078593908.jpg'
+  ] 
+  var imgElement = document.querySelector('.topdp-1');
+  imgElement.src = images[Math.floor(Math.random() * images.length)];
+}
+</script>
+</body>
+</html>
