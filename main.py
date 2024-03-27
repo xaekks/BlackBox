@@ -18,7 +18,7 @@ async def neko():
     string = {"url": url}
     return string
 
-@app.get("chatbot", tags=['AI'])
+@app.get("/chatbot/{prompt}", tags=['AI'])
 async def chatbot(prompt):
      res = cleverbotfreeapi.cleverbot(prompt)
      respon = json.dumps({'text', res})
