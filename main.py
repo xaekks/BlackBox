@@ -59,7 +59,7 @@ async def ward():
      words_list = game.COMMON_WORDS
      random.shuffle(words_list)
      answer = random.choice(words_list)
-     chars = list(word)
+     chars = list(answer)
      random.shuffle(chars)
      question = '-'.join(chars)
      return {
