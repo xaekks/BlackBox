@@ -1,6 +1,15 @@
 
-import random, strings, requests, cleverbotfreeapi, json
-from resources import nekos, games
+import (
+    random, 
+    strings,
+    requests,
+    cleverbotfreeapi,
+    json )
+
+from resources import (
+anime, 
+game )
+
 from fastapi import FastAPI
 
 
@@ -14,7 +23,7 @@ async def root():
 
 @app.get("/neko", tags=['images'])
 async def neko():
-    url = random.choice(nekos.neko)
+    url = random.choice(anime.neko)
     string = {"url": url}
     return string
 
@@ -45,15 +54,15 @@ async def ai_models(model, prompt):
 
 @app.get("/word", tags=['tools'])
 async def ward():
-     words_list = games.COMMON_WORDS
+     words_list = game.COMMON_WORDS
      random.shuffle(words_list)
-     word = random.choice(words_list)
+     answer = random.choice(words_list)
      chars = list(word)
      random.shuffle(chars)
-     guess = '-'.join(chars)
+     question = '-'.join(chars)
      return {
-        "guess": guess,
-        "word": word
+        "question": question,
+        "answer": answer 
      }
 
     
