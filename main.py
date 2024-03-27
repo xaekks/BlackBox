@@ -24,15 +24,20 @@ async def neko():
     string = {"url": url}
     return string
 
+
+
+
+
 @app.get("/chatbot/{prompt}", tags=['AI'])
-async def chatbot(prompt):
-     res = cleverbotfreeapi.cleverbot(prompt)
-     respon = json.dumps({'text', res})
-     response = json.loads(respon)
-     return response 
+async def chatbot(prompt: str):
+    res = cleverbotfreeapi.cleverbot(prompt)
+    response = {'text': res}
+    return response
+
+
 
 @app.get("/ai/{model}/{prompt}", tags=['AI'])
-async def ai_models(model, prompt):
+async def ai_models(model: str , prompt: str):
      models = {
           'bard': 20,
           'gpt': 5,
@@ -40,7 +45,7 @@ async def ai_models(model, prompt):
      
      names = list(models.keys())
      if model not in names:
-           return "available model names: bard, gpt, palm"
+           return "available models names: [bard, gpt, palm]"
      else:
          id = int(models[model])
          url = "https://lexica.qewertyy.dev/models?model_id={id}&prompt={prompt}"
