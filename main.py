@@ -31,12 +31,13 @@ async def ai_models(model, prompt):
           'bard': 20,
           'gpt': 5,
           'palm': 1}
-     url = f"https://lexica.qewertyy.dev/models?model_id={id}&prompt={prompt}"
+     
      names = list(models.keys())
      if model not in names:
            return "available model names: bard, gpt, palm"
      else:
-         id = models[model]
+         id = int(models[model])
+         url = "https://lexica.qewertyy.dev/models?model_id={id}&prompt={prompt}"
          response = requests.post(url.format(id=id, prompt=prompt)).json()
          return response 
 
