@@ -1,14 +1,11 @@
 
-import (
-    random, 
-    strings,
-    requests,
-    cleverbotfreeapi,
-    json )
+import random
+import strings
+import requests
+import cleverbotfreeapi
+import json
 
-from resources import (
-anime, 
-game )
+from resources import anime, game
 
 from fastapi import FastAPI
 
