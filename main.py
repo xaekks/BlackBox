@@ -8,7 +8,7 @@ import secureme
 
 
 from resources import anime, game, quote
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from fastapi.responses import FileResponse
 
 app = FastAPI()
@@ -103,13 +103,13 @@ async def ai_models(model: str , prompt: str):
 @app.get('/encrypt/{string}', tags=['tools'])
 async def encrypt(string: str):
      text = secureme.encrypt(string)
-     encryption = json.dumps({'encrypt': text})
+     encryption = {'encrypt': text}
      return encryption 
 
 @app.get('/decrypt/{string}', tags=['tools'])
 async def encrypt(string: str):
      text = secureme.decrypt(string)
-     decryption = json.dumps({'decrypt': text})
+     decryption = {'decrypt': text}
      return decryption 
      
     
