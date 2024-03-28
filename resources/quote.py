@@ -1,4 +1,4 @@
-anime_quote_image = (
+anime_quote_url = (
       "https://i.imgur.com/Iub4RYj.jpg", 
       "https://i.imgur.com/uvNMdIl.jpg", 
       "https://i.imgur.com/YOBOntg.jpg", 
