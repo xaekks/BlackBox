@@ -8,7 +8,7 @@ import secureme
 
 
 from resources import anime, game, quote
-
+from pydantic import BaseModel
 from fastapi import FastAPI
 from fastapi.responses import FileResponse
 
