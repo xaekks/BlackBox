@@ -69,6 +69,22 @@ def run(code, language):
 
 @app.get("/run", tags=['tools'])
 async def run_code(code: str, language: str):
+    """
+    `AVAILABLE LANGAUGES`:
+    Matlab, bash, befunge93, bqn, brachylog, brainfuck, 
+    cjam, clojure, cobol, coffeescript, cow, crystal,
+    dart, dash, typescript, javascript, basic.net,
+    fsharp.net, csharp.net, fsi, dragon, elixir,
+    emacs, emojicode, erlang, file, forte, forth, 
+    freebasic, awk, c, c++, d, fortran, go, golfscript, 
+    groovy, haskell, husk, iverilog, japt, java, jelly, 
+    julia, kotlin, lisp, llvm_ir, lolcode, lua, csharp, 
+    basic, nasm, nasm64, nim, javascript, ocaml, octave,
+    osabie, paradoc, pascal, perl, php, ponylang, prolog, pure, 
+    powershell, pyth, python2, python, racket, raku, retina, rockstar, 
+    rscript, ruby, rust, samarium, scala, smalltalk, sqlite3, swift, typescript, 
+    vlang, vyxal, yeethon, zig
+    """
     return run(code, language)
     
 
