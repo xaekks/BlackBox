@@ -1,5 +1,6 @@
 fastapi[all]
 uvicorn[standard]
 requests==2.31.0
+secureme==0.0.4
 cleverbotfreeapi==1.1.1
 
