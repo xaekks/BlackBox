@@ -8,7 +8,6 @@ import secureme
 
 
 from resources import anime, game, quote
-from pydantic import BaseModel
 from fastapi import FastAPI
 from fastapi.responses import FileResponse
 
@@ -16,9 +15,7 @@ app = FastAPI()
 
 
 
-class CodeRequest(BaseModel):
-    code: str
-    language: str
+
 
 
 
@@ -28,7 +25,7 @@ def serve_index():
     return FileResponse(index_file)
 
 
-@app.get("quote", tags=['quote'])
+@app.get("/animequote", tags=['quote'])
 async def anime_quote():
    url = random.choice(quote.anime_quote_url)
    return { "url": url }
@@ -70,9 +67,9 @@ def run(code, language):
     else:
         raise HTTPException(status_code=404, detail="Error: language is not found.")
 
-@app.post("/run")
-async def run_code(code_request: CodeRequest):
-    return run(code_request.code, code_request.language)
+@app.get("/run", tags=['tools'])
+async def run_code(code: str: language: str):
+    return run(code, language)
     
 
 
