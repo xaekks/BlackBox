@@ -68,7 +68,7 @@ def run(code, language):
         raise HTTPException(status_code=404, detail="Error: language is not found.")
 
 @app.get("/run", tags=['tools'])
-async def run_code(code: str: language: str):
+async def run_code(code: str, language: str):
     return run(code, language)
     
 
