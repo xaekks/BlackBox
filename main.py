@@ -31,6 +31,8 @@ async def zero_chan(name: str):
     if not bool(mm) == False:
         images = {'images': mm}
         return images
+    else:
+        return {'failed to fetch 404 try other names.'}
        
             
                 
