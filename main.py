@@ -7,7 +7,7 @@ import json
 import secureme
 
 
-from resources import anime, game, quote, zerochan
+from resources import anime, game, quote, get_zerochan
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import FileResponse
 
@@ -25,14 +25,14 @@ def serve_index():
     return FileResponse(index_file)
 
 
-@app.get("/zerochan/{name}", tags=['anime'])
-async def zero_chan(name: str):
-    mm = await zerochan(name)
+@app.get("/zerochan", tags=['anime'])
+async def ZeroChanWeb(name: str):
+    mm = await get_zerochan(name)
     if not bool(mm) == False:
         images = {'images': mm}
         return images
     else:
-        return {'failed to fetch 404 try other names.'}
+        return {'Failed To Fetch 404 Try Other Names.'}
        
             
                 
