@@ -7,7 +7,8 @@ import json
 import secureme
 
 
-from resources import anime, game, quote, get_zerochan
+from resources import anime, game, quote
+from resources.zerochan import zerochan as get_zerochan
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import FileResponse
 
