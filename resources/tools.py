@@ -6,6 +6,18 @@ headers = {'User-Agent': 'Mozilla/5.0 (Linux; Android 11; Infinix X6816C) AppleW
 from resources import game
 
 
+
+async def get_couples():
+    api_url = "https://api.erdwpe.com/api/randomgambar/couplepp"
+    response = requests.get(api_url)
+    if response.status_code == 200:
+        data = response.json()
+        male_image = data["result"]["male"]
+        female_image = data["result"]["female"]
+        nandha = {"male_image": male_image, "female_image": female_image}
+        return nandha
+
+
 async def get_ai(models: str, prompt: str):
       models = {
           'bard': 20,
