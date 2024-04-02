@@ -55,7 +55,7 @@ async def neko():
 @app.get("/couples", tags=['images'])
 async def get_couple_images():
         res = await get_couples()
-        nandha = res.update(credits)
+        nandha = {**res, **credits}
         return nandha
         
 
@@ -91,7 +91,7 @@ async def run_code(code: str, language: str):
     vlang, vyxal, yeethon, zig
     """
     res = await run(code, language)
-    nandha = res.update(credits)
+    nandha = {**res, **credits}
     return nandha
     
 
@@ -104,7 +104,7 @@ async def search_ud(query: str, max: int = 10):
     """
 
     data = await get_urbandict(query, max)
-    nandha = data.update(credits)
+    nandha = {**data, **credits}
     return nandha
 
 
@@ -119,7 +119,7 @@ async def chatbot(prompt: str):
 @app.get("/ai/{model}/{prompt}", tags=['AI'])
 async def ai_models(model: str , prompt: str):
          res = await get_ai(model, prompt)
-         nandha = res.update(credits)
+         nandha = {**res, **credits}
          return nandha
 
 
@@ -149,7 +149,7 @@ async def encrypt(string: str):
 @app.get("/guess", tags=['tools'])
 async def get_word():
      res = await get_guess_word()
-     nandha = res.update(credits)
+     nandha = {**res, **credits}
      return nandha
      
      
