@@ -6,6 +6,21 @@ headers = {'User-Agent': 'Mozilla/5.0 (Linux; Android 11; Infinix X6816C) AppleW
 from resources import game
 
 
+async def get_ai(models: str, prompt: str):
+      models = {
+          'bard': 20,
+          'gpt': 5,
+          'palm': 1}
+     
+      names = list(models.keys())
+      if model not in names:
+           return "Available Models: [bard, gpt, palm]"
+      else:
+         id = int(models[model])
+         url = "https://lexica.qewertyy.dev/models?model_id={id}&prompt={prompt}"
+         res = requests.post(url.format(id=id, prompt=prompt)).json()
+         return res
+
 async get_guess_word():
      words_list = game.COMMON_WORDS
      random.shuffle(words_list)
