@@ -8,7 +8,7 @@ import secureme
 
 
 from resources import anime, game, quote
-from resources.tools import zerochan as get_zerochan, run, get_urbandict, get_ai, get_guess_word
+from resources.tools import zerochan as get_zerochan, translate_text, run, get_urbandict, get_ai, get_guess_word
 from resources.fonts import get_fonts
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import FileResponse
@@ -66,6 +66,18 @@ async def get_couple_images():
     else:
         return {"error": "Failed to fetch images"}
         
+
+@app.get("/translate", tags["tools")
+def translate(query: str, target_lang: str):
+    """Translate Any Text To Any Language
+    
+    - query: Text To Translate
+    - lang code : Get This From Here [https://telegra.ph/Lang-Codes-03-19-3]
+    """
+    translation = translate_text(query, target_lang)
+    if translation:
+        return {"translation": translation}
+
 
 
 @app.get("/run", tags=['tools'])
