@@ -1,6 +1,5 @@
 import requests
 from bs4 import BeautifulSoup as bs
-
 from fastapi import HTTPException
 headers = {'User-Agent': 'Mozilla/5.0 (Linux; Android 11; Infinix X6816C) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.6261.119 Mobile Safari/537.36 OPR/81.1.4292.78446'}
 
@@ -46,3 +45,38 @@ def run(code, language):
     else:
         raise HTTPException(status_code=404, detail="Error: language is not found.")
         
+
+def get_urbandict(word, max=10):
+    response = requests.get(f"http://api.urbandictionary.com/v0/define?term={word}")
+    if response.status_code == 200:
+        data = response.json()
+        z = []
+        for x in data["list"]:
+            a = {}
+            a["count"] = x["thumbs_up"] - x["thumbs_down"]
+            a["data"] = x
+            z.append(a)
+        
+        z = z[:max]
+        
+        def hhh(e):
+            return e["count"]
+        
+        z.sort(key=hhh)
+        z.reverse()
+        
+        results = []
+        
+        for i in z:
+            ndict = {}
+            ndict["definition"] = i["data"]["definition"]
+            ndict["example"] = i["data"]["example"]
+            results.append(ndict)
+        
+        json_data = {}
+        json_data["success"] = True
+        json_data["results"] = results
+        return json_data
+    else:
+        return {"success": False, "error": "Failed to fetch data"}
+
