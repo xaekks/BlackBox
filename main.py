@@ -8,7 +8,7 @@ import secureme
 
 
 from resources import anime, game, quote
-from resources.tools import zerochan as get_zerochan, translate_text, run, get_urbandict, get_ai, get_guess_word
+from resources.tools import zerochan as get_zerochan, get_couples, translate_text, run, get_urbandict, get_ai, get_guess_word
 from resources.fonts import get_fonts
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import FileResponse
@@ -55,13 +55,8 @@ async def neko():
 
 @app.get("/couples", tags=['images'])
 async def get_couple_images():
-    api_url = "https://api.erdwpe.com/api/randomgambar/couplepp"
-    response = requests.get(api_url)
-    if response.status_code == 200:
-        data = response.json()
-        male_image = data["result"]["male"]
-        female_image = data["result"]["female"]
-        nandha = {"male_image": male_image, "female_image": female_image, **credits}
+        res = await get_couples()
+        nandha = res.update(credits)
         return nandha
     else:
         return {"error": "Failed to fetch images"}
