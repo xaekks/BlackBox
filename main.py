@@ -58,8 +58,6 @@ async def get_couple_images():
         res = await get_couples()
         nandha = res.update(credits)
         return nandha
-    else:
-        return {"error": "Failed to fetch images"}
         
 
 @app.get("/translate", tags=['tools')
