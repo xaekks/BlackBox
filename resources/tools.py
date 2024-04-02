@@ -80,3 +80,19 @@ def get_urbandict(word, max=10):
     else:
         return {"success": False, "error": "Failed to fetch data"}
 
+def translate_text(source_text, target_lang):
+    response = requests.get(
+        "https://translate.googleapis.com/translate_a/single",
+        params={
+            "client": "gtx",
+            "sl": "auto",
+            "tl": target_lang,
+            "dt": "t",
+            "q": source_text,
+        },
+    )
+    if response.status_code == 200:
+        translation = response.json()[0][0][0]
+        return translation
+    else:
+        return {"success": False, "error": "Failed to fetch data"}
