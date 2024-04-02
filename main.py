@@ -60,7 +60,7 @@ async def get_couple_images():
         return nandha
         
 
-@app.get("/translate", tags=['tools')
+@app.get("/translate", tags=['tools'])
 async def translate(query: str, target_lang: str):
     """Translate Any Text To Any Language
     
