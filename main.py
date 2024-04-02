@@ -98,7 +98,8 @@ async def run_code(code: str, language: str):
     rscript, ruby, rust, samarium, scala, smalltalk, sqlite3, swift, typescript, 
     vlang, vyxal, yeethon, zig
     """
-    nandha = await run(code, language)
+    res = await run(code, language)
+    nandha = res.update(credits)
     return nandha
     
 
