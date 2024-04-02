@@ -1,3 +1,4 @@
+import string
 
 string1 =  ['🅐', '🅑', '🅒', '🅓', '🅔', '🅕', '🅖', '🅗', '🅘', '🅙', '🅚', '🅛', '🅜', '🅝', '🅞', '🅟', '🅠', '🅡', '🅢', '🅣', '🅤', '🅥', '🅦', '🅧', '🅨', '🅩']
 string2 =  ['🄰', '🄱', '🄲', '🄳', '🄴', '🄵', '🄶', '🄷', '🄸', '🄹', '🄺', '🄻', '🄼', '🄽', '🄾', '🄿', '🅀', '🅁', '🅂', '🅃', '🅄', '🅅', '🅆', '🅇', '🅈', '🅉']
@@ -10,4 +11,23 @@ string8 =  ['🅰', '🅱', '🅲', '🅳', '🅴', '🅵', '🅶', '🅷', '�
 string9 =  ['𝙖', '𝙗', '𝙘', '𝙙', '𝙚', '𝙛', '𝙜', '𝙝', '𝙞', '𝙟', '𝙠', '𝙡', '𝙢', '𝙣', '𝙤', '𝙥', '𝙦', '𝙧', '𝙨', '𝙩', '𝙪', '𝙫', '𝙬', '𝙭', '𝙮', '𝙯']
 string10 =  ['𝒂', '𝒃', '𝒄', '𝒅', '𝒆', '𝒇', '𝒈', '𝒉', '𝒊', '𝒋', '𝒌', '𝒍', '𝒎', '𝒏', '𝒐', '𝒑', '𝒒', '𝒓', '𝒔', '𝒕', '𝒖', '𝒗', '𝒘', '𝒙', '𝒚', '𝒛']
 
-async def style_fonts(text: str) -> str:
+data = {
+  'fonts': [
+   string1, string2, string3, string4, string5,
+   string6, string7, string8, string9, string10 ]
+       }
+
+
+async def converter(text: str, font_type):
+    a_to_z = [a for a in string.ascii_lowercase]
+    yee = {key: value for key, value in zip(a_to_z, font_type)}
+    for x, y in yee.items():
+          text = text.replace(x, y)
+    return text
+    
+
+async def get_fonts(name: str):
+    generated = []
+    for gg in data['fonts']:
+          generated.append(await converter(text=name, font_type=gg))
+    return generated
