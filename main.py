@@ -76,7 +76,7 @@ def translate(query: str, target_lang: str):
     """
     translation = translate_text(query, target_lang)
     if translation:
-        return {"translation": translation}
+        return {"translation": translation, **credits}
 
 
 
@@ -118,7 +118,7 @@ async def search_ud(query: str, max: int = 10):
 @app.get("/chatbot/{prompt}", tags=['AI'])
 async def chatbot(prompt: str):
     res = cleverbotfreeapi.cleverbot(prompt)
-    nandha = {'text': res}
+    nandha = {'text': res, **credits}
     return nandha
 
 
