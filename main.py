@@ -8,7 +8,7 @@ import secureme
 
 
 from resources import anime, game, quote
-from resources.tools import zerochan as get_zerochan, run, get_urbandict
+from resources.tools import zerochan as get_zerochan, run, get_urbandict, translate_text
 from resources.fonts import get_fonts
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import FileResponse
@@ -97,6 +97,17 @@ async def search_ud(query: str, max: int = 10):
     data = await get_urbandict(query, max)
     return data
 
+@app.get("/translate", tags["tools")
+def translate(query: str, target_lang: str):
+    """Translate Any Text To Any Language
+    
+    - query: Text To Translate
+    - lang code : Get This From Here [https://telegra.ph/Lang-Codes-03-19-3]
+    """
+    translation = translate_text(query, target_lang)
+    if translation:
+        return {"translation": translation}
+   
 
 @app.get("/chatbot/{prompt}", tags=['AI'])
 async def chatbot(prompt: str):
