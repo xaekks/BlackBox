@@ -51,6 +51,19 @@ async def neko():
     return {"url": url}
 
 
+@app.get("/couple", tags=['images'])
+async def get_couple_images():
+    api_url = "https://api.erdwpe.com/api/randomgambar/couplepp"
+    response = requests.get(api_url)
+    if response.status_code == 200:
+        data = response.json()
+        male_image = data["result"]["male"]
+        female_image = data["result"]["female"]
+        return {"male_image": male_image, "female_image": female_image, "Powered By": "Nandha API"}
+    else:
+        return {"error": "Failed to fetch images"}
+        
+
 
 def run(code, language):
     res = requests.get("https://emkc.org/api/v2/piston/runtimes")
