@@ -110,7 +110,7 @@ def get_urbandict(word, max=10):
     else:
         return {"success": False, "error": "Failed to fetch data"}
 
-def translate_text(source_text, target_lang):
+async def translate_text(source_text, target_lang):
     response = requests.get(
         "https://translate.googleapis.com/translate_a/single",
         params={
