@@ -2,6 +2,20 @@ import requests
 from bs4 import BeautifulSoup as bs
 from fastapi import HTTPException
 headers = {'User-Agent': 'Mozilla/5.0 (Linux; Android 11; Infinix X6816C) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.6261.119 Mobile Safari/537.36 OPR/81.1.4292.78446'}
+from resources import game
+
+
+async get_guess_word(word: str):
+     words_list = game.COMMON_WORDS
+     random.shuffle(words_list)
+     answer = random.choice(words_list)
+     chars = list(answer)
+     random.shuffle(chars)
+     question = '-'.join(chars)
+     return {
+        "question": question,
+        "answer": answer 
+     }
 
 
 async def zerochan(string: str):
