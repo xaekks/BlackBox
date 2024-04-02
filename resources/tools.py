@@ -21,7 +21,7 @@ async def get_ai(models: str, prompt: str):
          res = requests.post(url.format(id=id, prompt=prompt)).json()
          return res
 
-async get_guess_word():
+async def get_guess_word():
      words_list = game.COMMON_WORDS
      random.shuffle(words_list)
      answer = random.choice(words_list)
@@ -45,7 +45,7 @@ async def zerochan(string: str):
     return False
 
 
-def run(code, language):
+async def run(code, language):
     res = requests.get("https://emkc.org/api/v2/piston/runtimes")
     langs = next((lang for lang in res.json() if lang["language"] == language), None)
 
@@ -76,7 +76,7 @@ def run(code, language):
         raise HTTPException(status_code=404, detail="Error: language is not found.")
         
 
-def get_urbandict(word, max=10):
+async def get_urbandict(word, max=10):
     response = requests.get(f"http://api.urbandictionary.com/v0/define?term={word}")
     if response.status_code == 200:
         data = response.json()
