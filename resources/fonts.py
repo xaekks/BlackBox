@@ -22,7 +22,7 @@ async def converter(text: str, font_type):
     a_to_z = [a for a in string.ascii_lowercase]
     yee = {key: value for key, value in zip(a_to_z, font_type)}
     for x, y in yee.items():
-          text = text.replace(x, y)
+          text = text.lower().replace(x, y)
     return text
     
 
