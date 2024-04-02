@@ -6,7 +6,7 @@ headers = {'User-Agent': 'Mozilla/5.0 (Linux; Android 11; Infinix X6816C) AppleW
 from resources import game
 
 
-async get_guess_word(word: str):
+async get_guess_word():
      words_list = game.COMMON_WORDS
      random.shuffle(words_list)
      answer = random.choice(words_list)
