@@ -8,7 +8,7 @@ import secureme
 
 
 from resources import anime, game, quote
-from resources.zerochan import zerochan as get_zerochan
+from resources.tools import zerochan as get_zerochan, run
 from resources.fonts import get_fonts
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import FileResponse
@@ -51,7 +51,7 @@ async def neko():
     return {"url": url}
 
 
-@app.get("/couple", tags=['images'])
+@app.get("/couples", tags=['images'])
 async def get_couple_images():
     api_url = "https://api.erdwpe.com/api/randomgambar/couplepp"
     response = requests.get(api_url)
@@ -64,36 +64,6 @@ async def get_couple_images():
         return {"error": "Failed to fetch images"}
         
 
-
-def run(code, language):
-    res = requests.get("https://emkc.org/api/v2/piston/runtimes")
-    langs = next((lang for lang in res.json() if lang["language"] == language), None)
-
-    if langs is not None:
-        data = {
-            "language": language,
-            "version": langs["version"],
-            "files": [
-                {
-                    "name": f"file.{langs['aliases'][0] if langs['aliases'] else 'xz'}",
-                    "content": code,
-                },
-            ],
-        }
-
-        r = requests.post("https://emkc.org/api/v2/piston/execute", json=data)
-
-        if r.status_code == 200:
-            return {
-                "language": r.json()["language"],
-                "version": r.json()["version"],
-                "code": data["files"][0]["content"].strip(),
-                "output": r.json()["run"]["output"].strip()
-            }
-        else:
-            raise HTTPException(status_code=r.status_code, detail=f"Status Text: {r.reason}")
-    else:
-        raise HTTPException(status_code=404, detail="Error: language is not found.")
 
 @app.get("/run", tags=['tools'])
 async def run_code(code: str, language: str):
