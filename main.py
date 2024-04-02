@@ -8,7 +8,7 @@ import secureme
 
 
 from resources import anime, game, quote
-from resources.tools import zerochan as get_zerochan, run
+from resources.tools import zerochan as get_zerochan, run, get_urbandict
 from resources.fonts import get_fonts
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import FileResponse
@@ -86,6 +86,16 @@ async def run_code(code: str, language: str):
     return run(code, language)
     
 
+@app.get("/ud", tags=["tools"])
+async def search_ud(query: str, max: int = 10):
+    """Search meanings of words on Urban Dictionary
+
+    - query: Word whose meaning you want
+    - max: Max definitions to get
+    """
+
+    data = await get_urbandict(query, max)
+    return data
 
 
 @app.get("/chatbot/{prompt}", tags=['AI'])
