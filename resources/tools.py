@@ -16,6 +16,8 @@ async def get_couples():
         female_image = data["result"]["female"]
         nandha = {"male_image": male_image, "female_image": female_image}
         return nandha
+    else:
+        return {"error": "Failed to fetch images"}
 
 
 async def get_ai(models: str, prompt: str):
