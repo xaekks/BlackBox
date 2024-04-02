@@ -9,6 +9,7 @@ import secureme
 
 from resources import anime, game, quote
 from resources.zerochan import zerochan as get_zerochan
+from resources.fonts import get_fonts
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import FileResponse
 
@@ -128,6 +129,15 @@ async def ai_models(model: str , prompt: str):
          response = requests.post(url.format(id=id, prompt=prompt)).json()
          return response 
 
+
+@app.get('/styletext', tags=['tools'])
+async def style_text(query: str):
+    fonts = await get_fonts(query)
+    nandha = {
+        'query': query,
+        'fonts': fonts
+}
+    return nandha
 
 
 @app.get('/encrypt/{string}', tags=['tools'])
