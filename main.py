@@ -1,6 +1,5 @@
 
 import random
-import strings
 import requests
 import cleverbotfreeapi
 import json
