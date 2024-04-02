@@ -40,7 +40,7 @@ async def ZeroChanWeb(name: str):
                 
         
 
-@app.get("/animequote", tags=['quote'])
+@app.get("/animequote", tags=['images'])
 async def anime_quote():
    url = random.choice(quote.anime_quote_url)
    return { "url": url }
@@ -67,14 +67,14 @@ async def get_couple_images():
         return {"error": "Failed to fetch images"}
         
 
-@app.get("/translate", tags["tools")
-def translate(query: str, target_lang: str):
+@app.get("/translate", tags=['tools')
+async def translate(query: str, target_lang: str):
     """Translate Any Text To Any Language
     
     - query: Text To Translate
     - lang code : Get This From Here [https://telegra.ph/Lang-Codes-03-19-3]
     """
-    translation = translate_text(query, target_lang)
+    translation = await translate_text(query, target_lang)
     if translation:
         return {"translation": translation, **credits}
 
