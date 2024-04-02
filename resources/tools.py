@@ -20,7 +20,7 @@ async def get_couples():
         return {"error": "Failed to fetch images"}
 
 
-async def get_ai(models: str, prompt: str):
+async def get_ai(model: str, prompt: str):
       models = {
           'bard': 20,
           'gpt': 5,
