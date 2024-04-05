@@ -39,7 +39,7 @@ async def ZeroChanWeb(name: str):
 @app.get("/imagine", tags=['AI'])
 async def imagine_draw(prompt: str):
     xx = await imagine(prompt)
-    nandha = {xx, **credits}
+    nandha = {**xx, **credits}
     return nandha
                 
         
