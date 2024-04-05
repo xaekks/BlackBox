@@ -34,11 +34,15 @@ async def ZeroChanWeb(name: str):
         return images
     else:
         return {'Failed To Fetch 404 Try Other Names.'}
-       
-            
+
+
+@app.get("/imagine", tags=['AI'])
+async def imagine_draw(prompt: str):
+    xx = await imagine(prompt)
+    nandha = {xx, **credits}
+    return nandha
                 
         
-
 @app.get("/animequote", tags=['images'])
 async def anime_quote():
    url = random.choice(quote.anime_quote_url)
