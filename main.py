@@ -46,7 +46,7 @@ async def imagine_draw(prompt: str):
 @app.get("/animequote", tags=['images'])
 async def anime_quote():
    url = random.choice(quote.anime_quote_url)
-   return { "url": url }
+   return { "url": url, **credits}
     
 @app.get("/neko", tags=['images'])
 async def neko():
