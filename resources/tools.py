@@ -1,7 +1,6 @@
 import requests
 import random
 import time 
-import base64
 from bs4 import BeautifulSoup as bs
 from fastapi import HTTPException
 from resources import game
@@ -19,8 +18,7 @@ async def imagine(prompt: str):
         resp = requests.post(api_url, data=form_data)
         if resp.status_code == 200:
              return {
-                 'prompt': prompt,
-                 'image': base64.b64encode(resp.content).decode('utf-8')}
+                 'image': resp.content }
         else:
            return {'Requtests Failed To Fetch 404'}
                 
