@@ -1,5 +1,6 @@
 import requests
 import random
+import time 
 from bs4 import BeautifulSoup as bs
 from fastapi import HTTPException
 headers = {'User-Agent': 'Mozilla/5.0 (Linux; Android 11; Infinix X6816C) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.6261.119 Mobile Safari/537.36 OPR/81.1.4292.78446'}
@@ -7,6 +8,23 @@ from resources import game
 
 
 
+
+
+async def imagine(prompt: str):
+        api_url = "https://ai-api.magicstudio.com/api/ai-art-generator"
+        form_data = {
+        'prompt': prompt,
+        'output_format': 'bytes',
+        'request_timestamp': str(int(time.time())),
+        'user_is_subscribed': 'false',
+        }
+        resp = requests.post(api_url, data=form_data)
+        if resp.status_code == 200:
+             return {
+                 'prompt': prompt, 'image': resp.content }
+        else:
+             return {'Requtests Failed To Fetch 404' }
+    
 async def get_couples():
     api_url = "https://api.erdwpe.com/api/randomgambar/couplepp"
     response = requests.get(api_url)
