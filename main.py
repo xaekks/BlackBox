@@ -7,7 +7,7 @@ import secureme
 
 
 from resources import anime, game, quote
-from resources.tools import zerochan as get_zerochan, get_couples, translate_text, run, get_urbandict, get_ai, get_guess_word
+from resources.tools import imagine, zerochan as get_zerochan, get_couples, translate_text, run, get_urbandict, get_ai, get_guess_word
 from resources.fonts import get_fonts
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import FileResponse
