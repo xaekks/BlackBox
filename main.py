@@ -10,7 +10,7 @@ from resources import anime, game, quote
 from resources.tools import imagine, zerochan as get_zerochan, get_couples, translate_text, run, get_urbandict, get_ai, get_guess_word
 from resources.fonts import get_fonts
 from fastapi import FastAPI, HTTPException
-from fastapi.responses import FileResponse
+from fastapi.responses import FileResponse, Response 
 
 app = FastAPI()
 
@@ -39,8 +39,8 @@ async def ZeroChanWeb(name: str):
 @app.get("/imagine", tags=['AI'])
 async def imagine_draw(prompt: str):
     xx = await imagine(prompt)
-    nandha = {**xx, **credits}
-    return nandha
+    nandha = xx['image']   
+    return Response(content=nandha, media_type='image/jpeg')
                 
         
 @app.get("/animequote", tags=['images'])
