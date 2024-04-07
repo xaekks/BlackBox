@@ -9,6 +9,7 @@ import secureme
 from resources import anime, game, quote
 from resources.tools import imagine, zerochan as get_zerochan, get_couples, translate_text, run, get_urbandict, get_ai, get_guess_word
 from resources.fonts import get_fonts
+from resources.insta import saveig
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import FileResponse, Response 
 
@@ -26,6 +27,16 @@ def serve_index():
     return FileResponse(index_file)
 
 
+@app.get("/insta")
+async def saveig_endpoint(link: str):
+    try:       
+        downloaded_media = saveig(link)
+        nandha = {"url": downloaded_media, **credits}
+        return nandha
+    
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+        
 @app.get("/zerochan", tags=['anime'])
 async def ZeroChanWeb(name: str):
     mm = await get_zerochan(name)
