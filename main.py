@@ -9,6 +9,7 @@ import secureme
 from resources import anime, game, quote
 from resources.tools import imagine, zerochan as get_zerochan, get_couples, translate_text, run, get_urbandict, get_ai, get_guess_word
 from resources.fonts import get_fonts
+from resources.grs import GoogleReverseImageSearch
 from resources.insta import saveig
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import FileResponse, Response 
@@ -27,7 +28,7 @@ def serve_index():
     return FileResponse(index_file)
 
 
-@app.get("/insta")
+@app.get("/insta", tags=['tools'])
 async def saveig_endpoint(link: str):
     try:       
         downloaded_media = saveig(link)
@@ -52,7 +53,14 @@ async def imagine_draw(prompt: str):
     xx = await imagine(prompt)
     nandha = xx['image']   
     return Response(content=nandha, media_type='image/jpeg')
-                
+
+@app.post("/reverse", tags=['tools'])
+async def reverse_image_search(img_url: str):
+    google = GoogleReverseImageSearch()
+    search_results = google.reverse_search_image(address=img_url)
+    nandha = {"url": search_results, **credits}
+    return nandha
+
         
 @app.get("/animequote", tags=['images'])
 async def anime_quote():
