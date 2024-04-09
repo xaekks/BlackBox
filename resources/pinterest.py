@@ -1,5 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
+from urllib.parse import urlparse
 
 def pin(query):
     headers = {
@@ -23,3 +24,33 @@ def pin(query):
 
     images.pop(0)  # Removing the first image link as it might be a placeholder
     return images
+
+
+def expand_url(url):
+    response = requests.head(url, allow_redirects=True)
+    return response.url
+
+def get_pinterest_video_url(url):
+    try:
+        if "pin.it" in url:
+            url = expand_url(url)
+        
+        parsed_url = urlparse(url)
+        final_url = f"https://{parsed_url.hostname}{parsed_url.path}"
+
+        response = requests.get(final_url)
+        if not response.ok:
+            raise Exception(f"HTTP error {response.status_code}")
+
+        soup = BeautifulSoup(response.text, "html.parser")
+        video_tag = soup.find("video")
+        if video_tag:
+            video_url = video_tag.get("src")
+            out_url = video_url.replace("/hls/", "/720p/").replace(".m3u8", ".mp4")
+            return out_url
+        else:
+            return None
+    except Exception as e:
+        return None
+
+        
