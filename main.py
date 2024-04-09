@@ -11,6 +11,7 @@ from resources.tools import imagine, zerochan as get_zerochan, get_couples, tran
 from resources.fonts import get_fonts
 from resources.grs import GoogleReverseImageSearch
 from resources.insta import saveig
+from resources.stack import search_stackoverflow
 from resources.pinterest import pin, get_pinterest_video_url
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import FileResponse, Response 
@@ -43,6 +44,14 @@ async def saveig_endpoint(link: str):
 async def search(query: str):
     result_images = pin(query)
     return {"images": result_images, "count": len(result_images), **credits}
+
+@app.get("/stackoverflow", tags=['tools'])
+async def stackoverflow_search(query: str):
+    questions = search_stackoverflow(query)
+    if questions:
+        return {"results": questions, **credits}
+    else:
+        return {"message": "No questions found for the query."}
 
 @app.get("/vidpinterest", tags=['tools'])
 async def get_pinterest_video(pinterest_url: str):
