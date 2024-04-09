@@ -11,7 +11,7 @@ from resources.tools import imagine, zerochan as get_zerochan, get_couples, tran
 from resources.fonts import get_fonts
 from resources.grs import GoogleReverseImageSearch
 from resources.insta import saveig
-from resources.pinterest import pin
+from resources.pinterest import pin, get_pinterest_video_url
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import FileResponse, Response 
 
@@ -43,6 +43,17 @@ async def saveig_endpoint(link: str):
 async def search(query: str):
     result_images = pin(query)
     return {"images": result_images, "count": len(result_images), **credits}
+
+@app.get("/vidpinterest", tags=['tools'])
+async def get_pinterest_video(pinterest_url: str):
+    """
+    To Get Download link of pinterest urls
+    """
+    video_url = get_pinterest_video_url(pinterest_url)
+    if video_url:
+        return {"video_url": video_url, **credits}
+    else:
+        return {"message": "No video found on the page."}
         
 @app.get("/zerochan", tags=['anime'])
 async def ZeroChanWeb(name: str):
