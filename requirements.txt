@@ -6,3 +6,4 @@ cleverbotfreeapi==1.1.1
 beautifulsoup4==4.12.3
 telegraph
 unidecode 
+urllib
