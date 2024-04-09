@@ -11,6 +11,7 @@ from resources.tools import imagine, zerochan as get_zerochan, get_couples, tran
 from resources.fonts import get_fonts
 from resources.grs import GoogleReverseImageSearch
 from resources.insta import saveig
+from resources.pinterest import pin
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import FileResponse, Response 
 
@@ -37,6 +38,11 @@ async def saveig_endpoint(link: str):
     
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+
+@app.get("/pinterest", tags=['tools'])
+async def search(query: str):
+    result_images = pin(query)
+    return {"images": result_images, "count": len(result_images), **credits}
         
 @app.get("/zerochan", tags=['anime'])
 async def ZeroChanWeb(name: str):
