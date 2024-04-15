@@ -2,6 +2,7 @@ fastapi[all]
 uvicorn[standard]
 requests==2.31.0
 secureme==0.0.4
+asyncio==3.4.3
 cleverbotfreeapi==1.1.1
 beautifulsoup4==4.12.3
 telegraph==2.2.0
