@@ -32,7 +32,7 @@ def serve_index():
 
 
 @app.post("/charai", tags=['AI'])
-async def character_ai(_, token: str, charid: str, query: str):
+async def character_ai(token: str, charid: str, query: str):
      client = aiocai.Client(token)
      new = await client.chat1.new_chat(charid)
      message = await client.chat1.send_message(
