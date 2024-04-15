@@ -6,6 +6,7 @@ import json
 import secureme
 
 
+from characterai import aiocai
 from resources import anime, game, quote
 from resources.tools import imagine, zerochan as get_zerochan, get_couples, translate_text, run, get_urbandict, get_ai, get_guess_word
 from resources.fonts import get_fonts
@@ -28,6 +29,16 @@ credits = {'credits': 'Nandha API'}
 def serve_index():
     index_file = "index.html"
     return FileResponse(index_file)
+
+
+@app.post("/charai", tags=['AI'])
+async def character_ai(_, token: str, charid: str, query: str):
+     client = aiocai.Client(token)
+     new = await client.chat1.new_chat(charid)
+     message = await client.chat1.send_message(
+            new.id, new.tgt, query)
+     return { 'author': message.author, 'reply': message.text, **credits}
+    
 
 
 @app.get("/insta", tags=['tools'])
