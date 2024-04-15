@@ -90,27 +90,27 @@ class Character(BaseModel, Avatar):
             Number of likes
     """
     external_id: str
-    title: str | None
+    title: Optional[str] = None #str | None
     name: str
     visibility: str
     copyable: bool
     greeting: str
-    description: str | None
+    description: Optional[str] = None #str | None
     identifier: str
-    avatar_file_name: str | None
+    avatar_file_name: Optional[str] = None #str | None
     songs: list
     img_gen_enabled: bool
-    base_img_prompt: str | None
-    img_prompt_regex: str | None
+    base_img_prompt: Optional[str] = None #str | None
+    img_prompt_regex: Optional[str] = None #str | None
     strip_img_prompt_from_msg: bool
-    default_voice_id: str | None
+    default_voice_id: Optional[str] = None # str | None
     starter_prompts: Optional[Promts] = None
     comments_enabled: bool
     user__username: str
     participant__name: str
     participant__num_interactions: Optional[int] = None
     participant__user__username: str
-    voice_id: str | None
+    voice_id: Optional[str] = None #str | None
     usage: Optional[str] = None
     upvotes: Optional[int] = None
 
@@ -170,10 +170,10 @@ class CharShort(BaseModel, Avatar):
             Maximum time of the last interaction with the character (?)
     """
     external_id: str
-    title: str | None
-    description: Optional[str | None] = None
+    title: Optional[str] = None #str | None
+    description: Optional[str] = None #Optional[str | None] = None
     greeting: str
-    avatar_file_name: str | None
+    avatar_file_name: Optional[str] = None #str | None
     visibility: Optional[str] = None
     copyable: Optional[str | bool] = None
     participant__name: str
