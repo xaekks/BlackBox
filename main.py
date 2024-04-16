@@ -3,11 +3,10 @@ import random
 import requests
 import cleverbotfreeapi
 import json
-import secureme
 
 
 
-from resources import anime, game, quote
+from resources import anime, quote
 from resources.tools import imagine, zerochan as get_zerochan, get_couples, translate_text, run, get_urbandict, get_ai, get_guess_word
 from resources.fonts import get_fonts
 from resources.grs import GoogleReverseImageSearch
@@ -182,25 +181,8 @@ async def style_text(query: str):
 }
     return nandha
 
-
-@app.get('/encrypt/{string}', tags=['tools'])
-async def encrypt(string: str):
-     text = secureme.encrypt(string)
-     nandha = {'encrypt': text, **credits}
-     return nandha
-
-@app.get('/decrypt/{string}', tags=['tools'])
-async def encrypt(string: str):
-     text = secureme.decrypt(string)
-     nandha = {'decrypt': text, **credits}
-     return nandha
-     
       
-@app.get("/guess", tags=['tools'])
-async def get_word():
-     res = await get_guess_word()
-     nandha = {**res, **credits}
-     return nandha
+
      
      
 
