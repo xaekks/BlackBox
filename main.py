@@ -11,6 +11,7 @@ from resources.tools import imagine, zerochan as get_zerochan, get_couples, tran
 from resources.fonts import get_fonts
 from resources.grs import GoogleReverseImageSearch
 from resources.insta import saveig
+from resources.gimage import scrape_and_save_image
 from resources.stack import search_stackoverflow
 from resources.pinterest import pin, get_pinterest_video_url
 from fastapi import FastAPI, HTTPException
@@ -29,6 +30,10 @@ def serve_index():
     index_file = "index.html"
     return FileResponse(index_file)
 
+@app.get("/gimages/{query}")
+async def get_images(query: str, limit: int = 5) -> List[str]:
+    return await scrape_and_save_image(query, limit)
+    
 
 @app.get("/insta", tags=['tools'])
 async def saveig_endpoint(link: str):
