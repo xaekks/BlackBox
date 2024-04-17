@@ -3,7 +3,6 @@ import random
 import time 
 from bs4 import BeautifulSoup as bs
 from fastapi import HTTPException
-from resources import game
 
 headers = {'User-Agent': 'Mozilla/5.0 (Linux; Android 11; Infinix X6816C) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.6261.119 Mobile Safari/537.36 OPR/81.1.4292.78446'}
 
@@ -50,18 +49,6 @@ async def get_ai(model: str, prompt: str):
          url = "https://lexica.qewertyy.dev/models?model_id={id}&prompt={prompt}"
          res = requests.post(url.format(id=id, prompt=prompt)).json()
          return res
-
-async def get_guess_word():
-     words_list = game.COMMON_WORDS
-     random.shuffle(words_list)
-     answer = random.choice(words_list)
-     chars = list(answer)
-     random.shuffle(chars)
-     question = '-'.join(chars)
-     return {
-        "question": question,
-        "answer": answer 
-     }
 
 
 async def zerochan(string: str):
