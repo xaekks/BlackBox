@@ -31,7 +31,7 @@ def serve_index():
     return FileResponse(index_file)
 
 @app.get("/gimages/{query}")
-async def get_images(query: str, limit: int = 5) -> List[str]:
+async def get_images(query: str, limit: int = 5):
     return await scrape_and_save_image(query, limit)
     
 
