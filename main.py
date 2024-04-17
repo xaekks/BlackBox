@@ -7,7 +7,7 @@ import json
 
 
 from resources import anime, quote
-from resources.tools import imagine, zerochan as get_zerochan, get_couples, translate_text, run, get_urbandict, get_ai, get_guess_word
+from resources.tools import imagine, zerochan as get_zerochan, get_couples, translate_text, run, get_urbandict, get_ai
 from resources.fonts import get_fonts
 from resources.grs import GoogleReverseImageSearch
 from resources.insta import saveig
