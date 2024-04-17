@@ -5,7 +5,7 @@ import cleverbotfreeapi
 import json
 
 
-
+from typing import List
 from resources import anime, quote
 from resources.tools import imagine, zerochan as get_zerochan, get_couples, translate_text, run, get_urbandict, get_ai
 from resources.fonts import get_fonts
