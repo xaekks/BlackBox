@@ -11,6 +11,7 @@ from resources.tools import imagine, zerochan as get_zerochan, get_couples, tran
 from resources.fonts import get_fonts
 from resources.grs import GoogleReverseImageSearch
 from resources.insta import saveig
+from resources.peakpx import get_image_links
 from resources.gimage import scrape_and_save_image
 from resources.stack import search_stackoverflow
 from resources.pinterest import pin, get_pinterest_video_url
@@ -34,6 +35,14 @@ def serve_index():
 async def get_images(query: str, limit: int = 5):
     return await scrape_and_save_image(query, limit)
     
+
+@app.get("peckpx", tags=['tools'])
+async def get_images(key: str, limit: int):
+    url = f"https://www.peakpx.com/en/search?q={key}"
+    link_img = get_image_links(url, key, limit)
+    return {"images": link_img, **credits}
+
+
 
 @app.get("/insta", tags=['tools'])
 async def saveig_endpoint(link: str):
