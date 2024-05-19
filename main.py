@@ -36,8 +36,7 @@ def serve_index():
 def hozory(text:str, code:str):
    try:
      results = hozory_translate(text, code)
-     nandha = {**results, **credits}
-     return nandha
+     return results
    except Exception as e:
        raise HTTPException(status_code=500, detail=str(e))
 
