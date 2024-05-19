@@ -60,3 +60,15 @@ class HozoryTranslator:
 
     def __exit__(self, *args):
         return sel
+
+
+
+
+
+def hozory_translate(text, code):
+    hozory_engine = AsyncHozoryTranslator()
+    result = hozory_engine.translate(
+         text, code
+    )
+    return result
+
