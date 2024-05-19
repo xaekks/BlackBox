@@ -66,7 +66,7 @@ class HozoryTranslator:
 
 
 def hozory_translate(text, code):
-    hozory_engine = AsyncHozoryTranslator()
+    hozory_engine = HozoryTranslator()
     result = hozory_engine.translate(
          text, code
     )
