@@ -11,8 +11,7 @@ from resources.tools import imagine, zerochan as get_zerochan, get_couples, tran
 from resources.fonts import get_fonts
 from resources.grs import GoogleReverseImageSearch
 from resources.insta import saveig
-from resources.peakpx import get_image_links
-from resources.gimage import scrape_and_save_image
+from resources.trhozory import hozory_translate
 from resources.stack import search_stackoverflow
 from resources.pinterest import pin, get_pinterest_video_url
 from fastapi import FastAPI, HTTPException
@@ -31,17 +30,16 @@ def serve_index():
     index_file = "index.html"
     return FileResponse(index_file)
 
-@app.get("/gimages/{query}")
-async def get_images(query: str, limit: int = 5):
-    return await scrape_and_save_image(query, limit)
-    
 
-@app.get("peckpx", tags=['tools'])
-async def get_images(key: str, limit: int):
-    url = f"https://www.peakpx.com/en/search?q={key}"
-    link_img = get_image_links(url, key, limit)
-    return {"images": link_img, **credits}
 
+@app.get('htranslate', tags=['tools'])
+def hozory(text:str, code:str):
+   try:
+     results = hozory_translate(text, code)
+     nandha = {results, **credits}
+     return nandha
+   except Exception as e:
+       raise HTTPException(status_code=500, detail=str(e))
 
 
 @app.get("/insta", tags=['tools'])
@@ -122,7 +120,7 @@ async def get_couple_images():
         return nandha
         
 
-@app.get("/translate", tags=['tools'])
+@app.get("/gtranslate", tags=['tools'])
 async def translate(query: str, target_lang: str):
     """Translate Any Text To Any Language
     
