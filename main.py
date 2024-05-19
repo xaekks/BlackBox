@@ -32,7 +32,7 @@ def serve_index():
 
 
 
-@app.get('htranslate', tags=['tools'])
+@app.get('/htranslate', tags=['tools'])
 def hozory(text:str, code:str):
    try:
      results = hozory_translate(text, code)
