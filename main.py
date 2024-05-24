@@ -14,6 +14,7 @@ from resources.insta import saveig
 from resources.trhozory import hozory_translate
 from resources.stack import search_stackoverflow
 from resources.pinterest import pin, get_pinterest_video_url
+from resources.gogo import get_source
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import FileResponse, Response 
 
@@ -191,6 +192,13 @@ async def style_text(query: str):
         'fonts': fonts, **credits
 }
     return nandha
+
+
+@app.get("/gogosource/{episode_id}", include_in_schema=False)
+async def gogosource(episode_id: str):
+         res = await get_source(episode_id)
+         nandha = {**res, **credits}
+         return nandha
 
       
 
