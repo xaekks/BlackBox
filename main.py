@@ -196,7 +196,7 @@ async def style_text(query: str):
 
 @app.get("/gogosource/{episode_id}", include_in_schema=False)
 async def gogosource(episode_id: str):
-         res = await get_source(episode_id)
+         res = get_source(episode_id)
          nandha = {**res, **credits}
          return nandha
 
