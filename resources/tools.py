@@ -1,7 +1,7 @@
 import requests
 import random
 import time 
-from urllib.parse import quoteq
+from urllib.parse import quote
 from bs4 import BeautifulSoup as bs
 from fastapi import HTTPException
 
