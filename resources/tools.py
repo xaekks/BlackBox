@@ -1,7 +1,7 @@
 import requests
 import random
 import time 
-from urllib.parse import quote
+from urllib.parse import quoteq
 from bs4 import BeautifulSoup as bs
 from fastapi import HTTPException
 
@@ -44,13 +44,17 @@ async def get_ai(model: str, prompt: str):
       }
      
       names = list(models.keys())
+  
       if model not in names:
-           return {"Available Models: [bard, gpt, palm]"}
+           return {
+             "Invalid model": "Available Models: [bard, gpt, palm]"
+           }
       else:
          id = int(models[model])
-         url = "https://lexica.qewertyy.dev/models?model_id={id}&prompt={prompt}"
-         res = requests.post(url.format(id=id, prompt=quote(prompt))).json()
-         return res
+         prompt = quote(prompt)
+         url = f"https://lexica.qewertyy.dev/models?model_id={id}&prompt={prompt}"
+         response = requests.post(url).json()
+         return response
 
 
 async def zerochan(string: str):
