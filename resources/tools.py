@@ -1,6 +1,7 @@
 import requests
 import random
 import time 
+from urllib.parse import quote
 from bs4 import BeautifulSoup as bs
 from fastapi import HTTPException
 
@@ -39,20 +40,21 @@ async def get_ai(model: str, prompt: str):
       models = {
           'bard': 20,
           'gpt': 5,
-          'palm': 1}
+          'palm': 1
+      }
      
       names = list(models.keys())
       if model not in names:
-           return "Available Models: [bard, gpt, palm]"
+           return {"Available Models: [bard, gpt, palm]"}
       else:
          id = int(models[model])
          url = "https://lexica.qewertyy.dev/models?model_id={id}&prompt={prompt}"
-         res = requests.post(url.format(id=id, prompt=prompt)).json()
+         res = requests.post(url.format(id=id, prompt=quote(prompt))).json()
          return res
 
 
 async def zerochan(string: str):
-    url = f"https://www.zerochan.net/"+str(string)
+    url = f"https://www.zerochan.net/"+str(quote(string))
     response = requests.get(url, headers=headers)
     if response.status_code == 200:
          soup = bs(response.text, 'html.parser')
@@ -94,7 +96,7 @@ async def run(code, language):
         
 
 async def get_urbandict(word, max=10):
-    response = requests.get(f"http://api.urbandictionary.com/v0/define?term={word}")
+    response = requests.get(f"http://api.urbandictionary.com/v0/define?term={quote(word)}")
     if response.status_code == 200:
         data = response.json()
         z = []
