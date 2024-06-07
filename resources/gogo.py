@@ -3,6 +3,11 @@ from bs4 import BeautifulSoup as bs
 
 baseUrl = "https://anitaku.so"
 
+def extractUrl(url):
+    res = requests.get(url)
+    extracted_url = res.history[0].headers.get('Location')
+    return extracted_url
+
 def login():
     email = "gojosatoru3221@proton.me"
     password = "1000gojo"
@@ -45,6 +50,10 @@ def get_source(episode_id):
         links = soup.select('div.cf-download a')
         for link in links:
             links_data[link.get_text().strip()] = link['href'].strip()
+            
+        for key, url in links_data.items():
+            extracted_url = extractUrl(url)
+            links_data[key] = extracted_url
         return links_data
     except Exception as e:
         return e
