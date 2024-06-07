@@ -17,10 +17,20 @@ from resources.pinterest import pin, get_pinterest_video_url
 from resources.gogo import get_source
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import FileResponse, Response 
+from fastapi.middleware.cors import CORSMiddleware
+
 
 app = FastAPI()
 
+origins = ["*"]
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,  # Allows all origins
+    allow_credentials=True,
+    allow_methods=["*"],  # Allows all methods
+    allow_headers=["*"],  # Allows all headers
+)
 
 
 credits = {'credits': 'Nandha API'}
