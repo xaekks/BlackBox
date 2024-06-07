@@ -1,4 +1,3 @@
-
 import random
 import requests
 import cleverbotfreeapi
@@ -206,9 +205,12 @@ async def style_text(query: str):
 
 @app.get("/gogosource/{episode_id}", include_in_schema=False)
 async def gogosource(episode_id: str):
+    try:
          res = get_source(episode_id)
          nandha = {**res, **credits}
          return nandha
+    except Exception as e:
+        return {error : e.message}
 
       
 
