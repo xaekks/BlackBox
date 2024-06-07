@@ -12,6 +12,7 @@ from resources.grs import GoogleReverseImageSearch
 from resources.insta import saveig
 from resources.trhozory import hozory_translate
 from resources.stack import search_stackoverflow
+from resources.truth_dare import truth_string, dare_string
 from resources.pinterest import pin, get_pinterest_video_url
 from resources.gogo import get_source
 from fastapi import FastAPI, HTTPException
@@ -41,6 +42,25 @@ def serve_index():
     return FileResponse(index_file)
 
 
+
+
+
+####################################################################################################################################
+
+
+@app.get('/truth', tags=['game'])
+def truth():
+    string = random.choice(truth_string)
+    nandha = {"truth": string, **credits}
+    return nandha
+
+@app.get('/dare', tags=['game'])
+def truth():
+    string = random.choice(dare_string)
+    nandha = {"dare": string, **credits}
+    return nandha
+
+####################################################################################################################################
 
 @app.get('/htranslate', tags=['tools'])
 def hozory(text:str, code:str):
@@ -84,22 +104,6 @@ async def get_pinterest_video(pinterest_url: str):
         return {"video_url": video_url, **credits}
     else:
         return {"message": "No video found on the page."}
-        
-@app.get("/zerochan", tags=['anime'])
-async def ZeroChanWeb(name: str):
-    mm = await get_zerochan(name)
-    if not bool(mm) == False:
-        images = {'images': mm, **credits}
-        return images
-    else:
-        return {'Failed To Fetch 404 Try Other Names.'}
-
-
-@app.get("/imagine", tags=['AI'])
-async def imagine_draw(prompt: str):
-    xx = await imagine(prompt)
-    nandha = xx['image']   
-    return Response(content=nandha, media_type='image/jpeg')
 
 @app.post("/reverse", tags=['tools'])
 async def reverse_image_search(img_url: str):
@@ -107,27 +111,6 @@ async def reverse_image_search(img_url: str):
     search_results = google.reverse_search_image(address=img_url)
     nandha = {"url": search_results, **credits}
     return nandha
-
-        
-@app.get("/animequote", tags=['images'])
-async def anime_quote():
-   url = random.choice(quote.anime_quote_url)
-   return { "url": url, **credits}
-    
-@app.get("/neko", tags=['images'])
-async def neko():
-    url = random.choice(anime.neko)
-    nandha = {"url": url, **credits}
-    return nandha
-    
-
-
-@app.get("/couples", tags=['images'])
-async def get_couple_images():
-        res = await get_couples()
-        nandha = {**res, **credits}
-        return nandha
-        
 
 @app.get("/gtranslate", tags=['tools'])
 async def translate(query: str, target_lang: str):
@@ -139,8 +122,6 @@ async def translate(query: str, target_lang: str):
     translation = await translate_text(query, target_lang)
     if translation:
         return {"translation": translation, **credits}
-
-
 
 @app.get("/run", tags=['tools'])
 async def run_code(code: str, language: str):
@@ -176,22 +157,7 @@ async def search_ud(query: str, max: int = 10):
     data = await get_urbandict(query, max)
     nandha = {**data, **credits}
     return nandha
-
-
-@app.get("/chatbot/{prompt}", tags=['AI'])
-async def chatbot(prompt: str):
-    res = cleverbotfreeapi.cleverbot(prompt)
-    nandha = {'text': res, **credits}
-    return nandha
-
-
-
-@app.get("/ai/{model}/{prompt}", tags=['AI'])
-async def ai_models(model: str , prompt: str):
-         res = await get_ai(model, prompt)
-         nandha = {**res, **credits}
-         return nandha
-
+  
 
 @app.get('/styletext', tags=['tools'])
 async def style_text(query: str):
@@ -201,6 +167,64 @@ async def style_text(query: str):
         'fonts': fonts, **credits
 }
     return nandha
+
+
+
+####################################################################################################################################
+
+
+@app.get("/zerochan", tags=['anime'])
+async def ZeroChanWeb(name: str):
+    mm = await get_zerochan(name)
+    if not bool(mm) == False:
+        images = {'images': mm, **credits}
+        return images
+    else:
+        return {'Failed To Fetch 404 Try Other Names.'}
+
+
+@app.get("/animequote", tags=['anime'])
+async def anime_quote():
+   url = random.choice(quote.anime_quote_url)
+   return { "url": url, **credits}
+    
+@app.get("/neko", tags=['anime'])
+async def neko():
+    url = random.choice(anime.neko)
+    nandha = {"url": url, **credits}
+    return nandha
+    
+
+@app.get("/couples", tags=['anime'])
+async def get_couple_images():
+        res = await get_couples()
+        nandha = {**res, **credits}
+        return nandha
+        
+
+####################################################################################################################################
+
+
+@app.get("/chatbot/{prompt}", tags=['AI'])
+async def chatbot(prompt: str):
+    res = cleverbotfreeapi.cleverbot(prompt)
+    nandha = {'text': res, **credits}
+    return nandha
+
+@app.get("/imagine", tags=['AI'])
+async def imagine_draw(prompt: str):
+    xx = await imagine(prompt)
+    nandha = xx['image']   
+    return Response(content=nandha, media_type='image/jpeg')
+
+
+@app.get("/ai/{model}/{prompt}", tags=['AI'])
+async def ai_models(model: str , prompt: str):
+         res = await get_ai(model, prompt)
+         nandha = {**res, **credits}
+         return nandha
+
+####################################################################################################################################
 
 
 @app.get("/gogosource/{episode_id}", include_in_schema=False)
