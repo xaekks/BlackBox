@@ -220,7 +220,7 @@ async def imagine_draw(prompt: str):
 
 
 @app.post("/nandhaai", tags=['AI'])
-async def NandhaAI(gemini: Gemini):
+async def NandhaAI(text, role, gemini: Gemini):
       text = gemini.text
       role = gemini.role
       result = GeminiFunc(text, role)
