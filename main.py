@@ -219,7 +219,10 @@ async def imagine_draw(prompt: str):
     return Response(content=nandha, media_type='image/jpeg')
 
 @app.post("/nandhaai", tags=['AI'])
-async def nandha_ai(text, role, gemini: Gemini):
+async def nandha_ai(gemini: Gemini):
+    data = gemini.dict()
+    text = data.text
+    role = data.role
     result = gemini_func(text, role)
     return result
   
