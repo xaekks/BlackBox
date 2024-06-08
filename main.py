@@ -49,13 +49,13 @@ def serve_index():
 ####################################################################################################################################
 
 
-@app.get('/truth', tags=['game'])
+@app.get('/truth', tags=['Game'])
 def truth():
     string = random.choice(truth_string)
     nandha = {"truth": string, **credits}
     return nandha
 
-@app.get('/dare', tags=['game'])
+@app.get('/dare', tags=['Game'])
 def truth():
     string = random.choice(dare_string)
     nandha = {"dare": string, **credits}
@@ -63,7 +63,7 @@ def truth():
 
 ####################################################################################################################################
 
-@app.get('/htranslate', tags=['tools'])
+@app.get('/htranslate', tags=['Tools'])
 def hozory(text:str, code:str):
    try:
      results = hozory_translate(text, code)
@@ -72,7 +72,7 @@ def hozory(text:str, code:str):
        raise HTTPException(status_code=500, detail=str(e))
 
 
-@app.get("/insta", tags=['tools'])
+@app.get("/insta", tags=['Tools'])
 async def saveig_endpoint(link: str):
     try:       
         downloaded_media = saveig(link)
@@ -82,12 +82,12 @@ async def saveig_endpoint(link: str):
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
-@app.get("/pinterest", tags=['tools'])
+@app.get("/pinterest", tags=['Tools'])
 async def search(query: str):
     result_images = pin(query)
     return {"images": result_images, "count": len(result_images), **credits}
 
-@app.get("/stackoverflow", tags=['tools'])
+@app.get("/stackoverflow", tags=['Tools'])
 async def stackoverflow_search(query: str):
     questions = search_stackoverflow(query)
     if questions:
@@ -95,7 +95,7 @@ async def stackoverflow_search(query: str):
     else:
         return {"message": "No questions found for the query."}
 
-@app.get("/vidpinterest", tags=['tools'])
+@app.get("/vidpinterest", tags=['Tools'])
 async def get_pinterest_video(pinterest_url: str):
     """
     To Get Download link of pinterest urls
@@ -106,14 +106,14 @@ async def get_pinterest_video(pinterest_url: str):
     else:
         return {"message": "No video found on the page."}
 
-@app.post("/reverse", tags=['tools'])
+@app.post("/reverse", tags=['Tools'])
 async def reverse_image_search(img_url: str):
     google = GoogleReverseImageSearch()
     search_results = google.reverse_search_image(address=img_url)
     nandha = {"url": search_results, **credits}
     return nandha
 
-@app.get("/gtranslate", tags=['tools'])
+@app.get("/gtranslate", tags=['Tools'])
 async def translate(query: str, target_lang: str):
     """Translate Any Text To Any Language
     
@@ -124,7 +124,7 @@ async def translate(query: str, target_lang: str):
     if translation:
         return {"translation": translation, **credits}
 
-@app.get("/run", tags=['tools'])
+@app.get("/run", tags=['Tools'])
 async def run_code(code: str, language: str):
     """
     `AVAILABLE LANGAUGES`:
@@ -147,7 +147,7 @@ async def run_code(code: str, language: str):
     return nandha
     
 
-@app.get("/ud", tags=["tools"])
+@app.get("/ud", tags=["Tools"])
 async def search_ud(query: str, max: int = 10):
     """Search meanings of words on Urban Dictionary
 
@@ -160,7 +160,7 @@ async def search_ud(query: str, max: int = 10):
     return nandha
   
 
-@app.get('/styletext', tags=['tools'])
+@app.get('/styletext', tags=['Tools'])
 async def style_text(query: str):
     fonts = await get_fonts(query)
     nandha = {
@@ -174,7 +174,7 @@ async def style_text(query: str):
 ####################################################################################################################################
 
 
-@app.get("/zerochan", tags=['anime'])
+@app.get("/zerochan", tags=['Anime'])
 async def ZeroChanWeb(name: str):
     mm = await get_zerochan(name)
     if not bool(mm) == False:
@@ -184,19 +184,19 @@ async def ZeroChanWeb(name: str):
         return {'Failed To Fetch 404 Try Other Names.'}
 
 
-@app.get("/animequote", tags=['anime'])
+@app.get("/animequote", tags=['Anime'])
 async def anime_quote():
    url = random.choice(quote.anime_quote_url)
    return { "url": url, **credits}
     
-@app.get("/neko", tags=['anime'])
+@app.get("/neko", tags=['Anime'])
 async def neko():
     url = random.choice(anime.neko)
     nandha = {"url": url, **credits}
     return nandha
     
 
-@app.get("/couples", tags=['anime'])
+@app.get("/couples", tags=['Anime'])
 async def get_couple_images():
         res = await get_couples()
         nandha = {**res, **credits}
