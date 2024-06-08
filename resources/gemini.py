@@ -37,7 +37,7 @@ def GeminiFunc(text: str, role: str):
       response = requests.post(API_URL, headers=headers, data=json.dumps(data))
       data = response.json()
   
-      if date.get('candidates'):
+      if data.get('candidates'):
             return {
               "reply": data['candidates'][0]['content']['parts'][0]['text']
             }
