@@ -32,8 +32,8 @@ def gemini_func(text: str, role: str):
     response = requests.post(API_URL, headers=headers, json=payload)
     data = response.json()
   
-    if data.get('candidates'):
+    if data.get('candidates') and data['candidates'][0].get('content'):
         return {"reply": data['candidates'][0]['content']['parts'][0]['text']}
     else:
-        return {"error": "API error"}
+        return {"reply": "Sorry Mortal I've Got Some Error Report in Support Chat"}
 
