@@ -12,9 +12,10 @@ class Gemini(BaseModel):
 def gemini_func(text: str, role: str):
     data = Gemini(text=text, role=role)
     headers = {"Content-Type": "application/json"}
+  
     response = requests.post(API_URL, headers=headers, json=data.dict())
-    response.raise_for_status()  # Raise an exception for 4xx or 5xx status codes
     data = response.json()
+  
     if data.get('candidates'):
         return {"reply": data['candidates'][0]['content']['parts'][0]['text']}
     else:
