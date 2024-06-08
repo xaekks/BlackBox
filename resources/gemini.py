@@ -5,7 +5,7 @@ import requests
 import json
 
 API_KEY = "AIzaSyCV7FjStkDviA_Evd20rNRoB1dL5kDQzeg"
-api_url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={API_KEY}"
+API_URL = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={API_KEY}"
 
 
 class Gemini(BaseModel):
@@ -34,7 +34,7 @@ def GeminiFunc(text: str, role: str):
         "role": "model"
     }
 }
-      response = requests.post(url, headers=headers, data=json.dumps(data))
+      response = requests.post(API_URL, headers=headers, data=json.dumps(data))
       data = response.json()
   
       if date.get('candidates'):
