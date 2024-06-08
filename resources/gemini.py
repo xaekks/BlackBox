@@ -1,50 +1,22 @@
-
 from pydantic import BaseModel
-
 import requests
 import json
 
 API_KEY = "AIzaSyCV7FjStkDviA_Evd20rNRoB1dL5kDQzeg"
 API_URL = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={API_KEY}"
 
-
 class Gemini(BaseModel):
-     text: str
-     role: str
+    text: str
+    role: str
 
+def gemini_func(text: str, role: str):
+    data = Gemini(text=text, role=role)
+    headers = {"Content-Type": "application/json"}
+    response = requests.post(API_URL, headers=headers, json=data.dict())
+    response.raise_for_status()  # Raise an exception for 4xx or 5xx status codes
+    data = response.json()
+    if data.get('candidates'):
+        return {"reply": data['candidates'][0]['content']['parts'][0]['text']}
+    else:
+        return {"error": "API error"}
 
-def GeminiFunc(text: str, role: str):
-      headers = {
-    "Content-Type": "application/json"
-}
-
-      data = {
-    "contents": [
-        {
-            "parts": [
-                {"text": text}
-            ],
-            "role": "User"
-        }
-    ],
-    "system_instruction": {
-        "parts": [
-            {"text": role}
-        ],
-        "role": "model"
-    }
-}
-      response = requests.post(API_URL, headers=headers, data=json.dumps(data))
-      data = response.json()
-  
-      if data.get('candidates'):
-            return {
-              "reply": data['candidates'][0]['content']['parts'][0]['text']
-            }
-      else:
-            return {
-             "error": data
-           }
-
-        
-    
