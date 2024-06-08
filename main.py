@@ -221,8 +221,8 @@ async def imagine_draw(prompt: str):
 @app.post("/nandhaai", tags=['AI'])
 async def nandha_ai(gemini: Gemini):
     data = gemini.dict()
-    text = data.text
-    role = data.role
+    text = data["text"]
+    role = data["role"]
     result = gemini_func(text, role)
     return result
   
