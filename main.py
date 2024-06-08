@@ -12,6 +12,7 @@ from resources.grs import GoogleReverseImageSearch
 from resources.insta import saveig
 from resources.trhozory import hozory_translate
 from resources.stack import search_stackoverflow
+from resources.gemini import Gemini, GeminiFunc
 from resources.truth_dare import truth_string, dare_string
 from resources.pinterest import pin, get_pinterest_video_url
 from resources.gogo import get_source
@@ -217,6 +218,14 @@ async def imagine_draw(prompt: str):
     nandha = xx['image']   
     return Response(content=nandha, media_type='image/jpeg')
 
+
+@app.post("/nandhaai", tags=['AI'])
+async def NandhaAI(gemini: Gemini):
+      text = gemini.text
+      role = gemini.role
+      result = GeminiFunc(text, role)
+      return result
+  
 
 @app.get("/ai/{model}/{prompt}", tags=['AI'])
 async def ai_models(model: str , prompt: str):
