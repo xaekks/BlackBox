@@ -6,10 +6,11 @@ import json
 
 from typing import List
 from resources import anime, quote
-from resources.tools import imagine, zerochan as get_zerochan, get_couples, translate_text, run, get_urbandict, get_ai
+from resources.tools import imagine, zerochan as get_zerochan, get_couples, translate_text, get_urbandict, get_ai
 from resources.fonts import get_fonts
 from resources.grs import GoogleReverseImageSearch
 from resources.insta import saveig
+from resources.code_runner import CodeRunner, run
 from resources.trhozory import hozory_translate
 from resources.stack import search_stackoverflow
 from resources.gemini import gemini_func, Gemini
@@ -62,6 +63,9 @@ def truth():
     return nandha
 
 ####################################################################################################################################
+
+#tools
+
 
 @app.get('/htranslate', tags=['Tools'])
 def hozory(text:str, code:str):
@@ -125,24 +129,25 @@ async def translate(query: str, target_lang: str):
         return {"translation": translation, **credits}
 
 @app.get("/run", tags=['Tools'])
-async def run_code(code: str, language: str):
+async def run_code(code: str, lang: str, Runner: CodeRunner):
     """
-    `AVAILABLE LANGAUGES`:
+    `Available Langauges`:
+    ```
     Matlab, bash, befunge93, bqn, brachylog, brainfuck, 
-    cjam, clojure, cobol, coffeescript, cow, crystal,
-    dart, dash, typescript, javascript, basic.net,
-    fsharp.net, csharp.net, fsi, dragon, elixir,
-    emacs, emojicode, erlang, file, forte, forth, 
-    freebasic, awk, c, c++, d, fortran, go, golfscript, 
-    groovy, haskell, husk, iverilog, japt, java, jelly, 
-    julia, kotlin, lisp, llvm_ir, lolcode, lua, csharp, 
-    basic, nasm, nasm64, nim, javascript, ocaml, octave,
-    osabie, paradoc, pascal, perl, php, ponylang, prolog, pure, 
-    powershell, pyth, python2, python, racket, raku, retina, rockstar, 
-    rscript, ruby, rust, samarium, scala, smalltalk, sqlite3, swift, typescript, 
-    vlang, vyxal, yeethon, zig
+    cjam, clojure, cobol, coffeescript, cow, crystal, 
+    dart, dash, typescript, javascript, basic.net, fsharp.net, 
+    csharp.net, fsi, dragon, elixir, emacs, emojicode, erlang,
+    file, forte, forth, freebasic, awk, c, c++, d, fortran, go,
+    golfscript, groovy, haskell, husk, iverilog, japt, java, 
+    jelly, julia, kotlin, lisp, llvm_ir, lolcode, lua, csharp, 
+    basic, nasm, nasm64, nim, javascript, ocaml, octave, osabie, 
+    paradoc, pascal, perl, php, ponylang, prolog, pure, powershell,
+    pyth, python2, python, racket, raku, retina, rockstar, rscript, 
+    ruby, rust, samarium, scala, smalltalk, sqlite3, swift, 
+    typescript, vlang, vyxal, yeethon, zig```
     """
-    res = await run(code, language)
+    data = Runner.dict()
+    res = await run(data['code'], data['lang'])
     nandha = {**res, **credits}
     return nandha
     
@@ -219,11 +224,9 @@ async def imagine_draw(prompt: str):
     return Response(content=nandha, media_type='image/jpeg')
 
 @app.post("/nandhaai", tags=['AI'])
-async def nandha_ai(gemini: Gemini):
+async def nandha_ai(text: str, role: str, gemini: Gemini):
     data = gemini.dict()
-    text = data["text"]
-    role = data["role"]
-    result = gemini_func(text, role)
+    result = gemini_func(data["text"], data["role"])
     return result
   
 
