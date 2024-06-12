@@ -7,7 +7,7 @@ from pydantic import BaseModel
 
 class CodeRunner(BaseModel):
       code: str
-      language: str
+      lang: str
 
 
 async def run(code, language):
