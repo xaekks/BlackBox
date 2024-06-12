@@ -128,7 +128,7 @@ async def translate(query: str, target_lang: str):
     if translation:
         return {"translation": translation, **credits}
 
-@app.get("/run", tags=['Tools'])
+@app.post("/run", tags=['Tools'])
 async def run_code(code: str, lang: str, Runner: CodeRunner):
     """
     `Available Langauges`:
