@@ -7,6 +7,38 @@ from fastapi import HTTPException
 
 headers = {'User-Agent': 'Mozilla/5.0 (Linux; Android 11; Infinix X6816C) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.6261.119 Mobile Safari/537.36 OPR/81.1.4292.78446'}
 
+
+
+async def balckbox_requests(text: str) -> str:
+    url = "https://www.blackbox.ai/api/chat"
+    headers = {
+    "Content-Type": "application/json"
+}
+    data = {
+    "messages": [
+    {"id": "dsjKNd1", "content": "good morning", "role": "user"}
+    ],
+    "id": "dsjKNd1",
+    "previewToken": None,
+    "userId": "aca49479-1539-4ba9-8960-660961345f17",
+    "codeModelMode": True,
+    "agentMode": {},
+    "trendingAgentMode": {},
+    "isMicMode": False,
+    "isChromeExt": False,
+    "githubToken": None,
+    "clickedAnswer2": False,
+    "clickedAnswer3": False,
+    "visitFromDelta": None
+    }
+    response = requests.post(url, headers=headers, json=data)
+    response_text = response.text
+    # Use regular expression to remove the unwanted random characters at the start of the response
+    cleaned_response_text = re.sub(r'^\$?@?\$?v=undefined-rv\d+@?\$?|\$?@?\$?v=v\d+\.\d+-rv\d+@?\$?', '', response_text)
+    text = cleaned_response_text.strip()[2:]
+    return {'reply': text}
+  
+
 async def imagine(prompt: str):
         api_url = "https://ai-api.magicstudio.com/api/ai-art-generator"
         form_data = {
