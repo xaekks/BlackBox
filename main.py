@@ -149,10 +149,10 @@ async def run_code(code: str, lang: str, CodeRunner):
     """
 
     data = CodeRunner.dict()
-    if code and  lang:
-    code = data['code']
-    lang = data['lang']
-    res = await run(code, lang)
+    if code and lang:
+       data['code'] = code
+       data['lang'] = lang
+    res = await run(data['code'], data['lang'])
     nandha = {**res, **credits}
     return nandha
     
