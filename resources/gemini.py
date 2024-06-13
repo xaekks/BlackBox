@@ -10,7 +10,7 @@ class Gemini(BaseModel):
     text: str
     role: str
 
-def gemini_func(text: str, role: str):
+async def gemini_func(text: str, role: str):
     headers = {"Content-Type": "application/json"}
     payload = {
     "contents": [
