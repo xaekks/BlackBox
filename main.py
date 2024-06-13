@@ -130,7 +130,7 @@ async def translate(query: str, target_lang: str):
         return {"translation": translation, **credits}
 
 @app.post("/run", tags=['Tools'])
-async def run_code(code: str, lang: str, Runner: CodeRunner):
+async def run_code(CodeRunner):
     """
     `Available Langauges`:
     ```
@@ -147,14 +147,9 @@ async def run_code(code: str, lang: str, Runner: CodeRunner):
     ruby, rust, samarium, scala, smalltalk, sqlite3, swift, 
     typescript, vlang, vyxal, yeethon, zig```
     """
-    data = Runner.dict()
-    if code and lang:
-        code = code
-        lang = lang
-    else:
-        code = data['code']
-        lang = data['lang']
-      
+    
+    code = CodeRunner['code']
+    lang = CodeRunner['lang']
     res = await run(code, lang)
     nandha = {**res, **credits}
     return nandha
@@ -232,12 +227,8 @@ async def imagine_draw(prompt: str):
     return Response(content=nandha, media_type='image/jpeg')
 
 @app.post("/nandhaai", tags=['AI'])
-async def nandha_ai(text: str, role: str, gemini: Gemini):
-    data = gemini.dict()
-    if text and role:
-        text, role = text, role
-    else:
-        text, role = data["text"], data["role"]
+async def nandha_ai(Gemini):
+    text, role = Gemini["text"], Gemini["role"]
     result = await gemini_func(text, role)
     return result
 
@@ -246,11 +237,8 @@ class Prompt(BaseModel):
       prompt: str
 
 @app.post("/blackbox", tags=['AI'])
-async def blackbox(prompt: str, Prompt):
-     if prompt:
-        prompt = prompt
-     else:
-        prompt = Prompt['prompt']
+async def blackbox(Prompt):
+     prompt = Prompt['prompt']
      res = await balckbox_requests(prompt)
      nandha = {**res, **credits}
      return nandha
