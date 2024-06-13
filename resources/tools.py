@@ -10,14 +10,14 @@ headers = {'User-Agent': 'Mozilla/5.0 (Linux; Android 11; Infinix X6816C) AppleW
 
 
 
-async def balckbox_requests(text: str) -> str:
+async def balckbox_requests(prompt: str) -> str:
     url = "https://www.blackbox.ai/api/chat"
     headers = {
     "Content-Type": "application/json"
 }
     data = {
     "messages": [
-    {"id": "dsjKNd1", "content": "good morning", "role": "user"}
+    {"id": "dsjKNd1", "content": prompt, "role": "user"}
     ],
     "id": "dsjKNd1",
     "previewToken": None,
@@ -33,11 +33,15 @@ async def balckbox_requests(text: str) -> str:
     "visitFromDelta": None
     }
     response = requests.post(url, headers=headers, json=data)
+    if response.status_code != 200:
+        return {'errors': 'Code: ', response.status_code}
     response_text = response.text
     # Use regular expression to remove the unwanted random characters at the start of the response
     cleaned_response_text = re.sub(r'^\$?@?\$?v=undefined-rv\d+@?\$?|\$?@?\$?v=v\d+\.\d+-rv\d+@?\$?', '', response_text)
     text = cleaned_response_text.strip()[2:]
-    return {'reply': text}
+    return {
+      'reply': text
+    }
   
 
 async def imagine(prompt: str):
