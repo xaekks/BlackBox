@@ -4,9 +4,10 @@ import cleverbotfreeapi
 import json
 
 
+from pydantic import BaseModel
 from typing import List
 from resources import anime, quote
-from resources.tools import imagine, zerochan as get_zerochan, get_couples, translate_text, get_urbandict, get_ai
+from resources.tools import balckbox_requests, imagine, zerochan as get_zerochan, get_couples, translate_text, get_urbandict, get_ai
 from resources.fonts import get_fonts
 from resources.grs import GoogleReverseImageSearch
 from resources.insta import saveig
@@ -147,7 +148,14 @@ async def run_code(code: str, lang: str, Runner: CodeRunner):
     typescript, vlang, vyxal, yeethon, zig```
     """
     data = Runner.dict()
-    res = await run(data['code'], data['lang'])
+    if code and lang:
+        code = code
+        lang = lang
+    else:
+        code = data['code']
+        lang = data['lang']
+      
+    res = await run(code, lang)
     nandha = {**res, **credits}
     return nandha
     
@@ -226,10 +234,26 @@ async def imagine_draw(prompt: str):
 @app.post("/nandhaai", tags=['AI'])
 async def nandha_ai(text: str, role: str, gemini: Gemini):
     data = gemini.dict()
-    result = gemini_func(data["text"], data["role"])
+    if text and role:
+        text, role = text, role
+    else:
+        text, role = data["text"], data["role"]
+    result = await gemini_func(text, role)
     return result
-  
 
+
+class Prompt(BaseModel):
+      prompt: str
+
+@app.post("/blackbox", tags=['AI'])
+async def blackbox(prompt: str, Prompt):
+     if prompt:
+        prompt = prompt
+     else:
+        prompt = Prompt['prompt']
+     res = await balckbox_requests(prompt)
+     nandha = {**res, **credits}
+     return nandha
 
 @app.get("/ai/{model}/{prompt}", tags=['AI'])
 async def ai_models(model: str , prompt: str):
