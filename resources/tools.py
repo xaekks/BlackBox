@@ -34,7 +34,7 @@ async def balckbox_requests(prompt: str) -> str:
     }
     response = requests.post(url, headers=headers, json=data)
     if response.status_code != 200:
-        return {'errors': 'Code: ', response.status_code}
+        return {'errors': 'Code: ', str(response.status_code)}
     response_text = response.text
     # Use regular expression to remove the unwanted random characters at the start of the response
     cleaned_response_text = re.sub(r'^\$?@?\$?v=undefined-rv\d+@?\$?|\$?@?\$?v=v\d+\.\d+-rv\d+@?\$?', '', response_text)
