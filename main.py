@@ -229,13 +229,8 @@ async def imagine_draw(prompt: str):
     return Response(content=nandha, media_type='image/jpeg')
 
 @app.post("/nandhaai", tags=['AI'])
-async def nandha_ai(text: str, role: str, Gemini):
-    data = Gemini.dict()
-    if text and role:
-       data["text"] = text
-       data["role"] = role
-       
-    text, role = data["text"], data["role"]
+async def nandha_ai(Gemini):
+    text, role = Gemini.text, Gemini.role
     result = await gemini_func(text, role)
     return result
 
@@ -245,8 +240,7 @@ class Prompt(BaseModel):
 
 @app.post("/blackbox", tags=['AI'])
 async def blackbox(prompt: Prompt):
-     data = prompt.dict()
-     res = await balckbox_requests(data["prompt"])
+     res = await balckbox_requests(prompt.prompt)
      nandha = {**res, **credits}
      return nandha
 
