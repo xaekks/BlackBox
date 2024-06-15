@@ -39,6 +39,8 @@ async def balckbox_requests(prompt: str) -> str:
     # Use regular expression to remove the unwanted random characters at the start of the response
     cleaned_response_text = re.sub(r'^\$?@?\$?v=undefined-rv\d+@?\$?|\$?@?\$?v=v\d+\.\d+-rv\d+@?\$?', '', response_text)
     text = cleaned_response_text.strip()[2:]
+    if "$~~~$" in text:
+        text = re.sub(r'\$~~~\$.*?\$~~~\$', '', text, flags=re.DOTALL)
     return {
       'reply': text
     }
