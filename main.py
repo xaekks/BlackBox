@@ -130,7 +130,7 @@ async def translate(query: str, target_lang: str):
         return {"translation": translation, **credits}
 
 @app.post("/run", tags=['Tools'])
-async def run_code(code: str, lang: str, CodeRunner):
+async def run_code(string: CodeRunner):
     """
     `Available Langauges`:
     ```
@@ -147,12 +147,7 @@ async def run_code(code: str, lang: str, CodeRunner):
     ruby, rust, samarium, scala, smalltalk, sqlite3, swift, 
     typescript, vlang, vyxal, yeethon, zig```
     """
-
-    data = CodeRunner.dict()
-    if code and lang:
-       data['code'] = code
-       data['lang'] = lang
-    res = await run(data['code'], data['lang'])
+    res = await run(string.code, string.lang)
     nandha = {**res, **credits}
     return nandha
     
@@ -229,8 +224,8 @@ async def imagine_draw(prompt: str):
     return Response(content=nandha, media_type='image/jpeg')
 
 @app.post("/nandhaai", tags=['AI'])
-async def nandha_ai(Gemini):
-    text, role = Gemini.text, Gemini.role
+async def nandha_ai(gemini: Gemini):
+    text, role = gemini.text, gemini.role
     result = await gemini_func(text, role)
     return result
 
