@@ -2,11 +2,28 @@ import requests
 import random
 import time 
 import re
+
+import uuid
+import os
+import tempfile
+
+from pytube import YouTube
 from urllib.parse import quote
 from bs4 import BeautifulSoup as bs
 from fastapi import HTTPException
 
 headers = {'User-Agent': 'Mozilla/5.0 (Linux; Android 11; Infinix X6816C) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.6261.119 Mobile Safari/537.36 OPR/81.1.4292.78446'}
+
+
+
+def youtube_dl(url: str):
+    yt = YouTube(url)
+    video = yt.streams.get_highest_resolution()
+    unique_filename = f"{uuid.uuid4()}.mp4"
+    with tempfile.TemporaryDirectory() as tmpdir:
+        file_path = os.path.join(tmpdir, unique_filename)
+        video.download(output_path=tmpdir, filename=unique_filename)
+        return file_path
 
 
 
