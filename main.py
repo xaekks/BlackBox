@@ -74,11 +74,10 @@ def truth():
 @app.post('/ytdl', tags=['Tools'])
 async def youtube(url: str):
     try:
-        file_path = youtube_dl(url)
-        return FileResponse(file_path, media_type='video/mp4', filename=os.path.basename(file_path))
+        return youtube_dl(url)
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
-      
+
 
 @app.get('/htranslate', tags=['Tools'])
 def hozory(text:str, code:str):
