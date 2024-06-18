@@ -2,6 +2,7 @@ import random
 import requests
 import cleverbotfreeapi
 import json
+import os
 
 
 from pydantic import BaseModel
