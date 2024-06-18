@@ -7,7 +7,7 @@ import json
 from pydantic import BaseModel
 from typing import List
 from resources import anime, quote
-from resources.tools import balckbox_requests, imagine, zerochan as get_zerochan, get_couples, translate_text, get_urbandict, get_ai
+from resources.tools import balckbox_requests, youtube_dl, imagine, zerochan as get_zerochan, get_couples, translate_text, get_urbandict, get_ai
 from resources.fonts import get_fonts
 from resources.grs import GoogleReverseImageSearch
 from resources.insta import saveig
@@ -18,7 +18,9 @@ from resources.gemini import gemini_func, Gemini
 from resources.truth_dare import truth_string, dare_string
 from resources.pinterest import pin, get_pinterest_video_url
 from resources.gogo import get_source
-from fastapi import FastAPI, HTTPException
+
+from fastapi import FastAPI, HTTPException, File, UploadFile
+
 from fastapi.responses import FileResponse, Response 
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -67,6 +69,15 @@ def truth():
 
 #tools
 
+
+@app.post('/ytdl', tags=['Tools'])
+async def youtube(url: str):
+    try:
+        file_path = youtube_dl(url)
+        return FileResponse(file_path, media_type='video/mp4', filename=os.path.basename(file_path))
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=str(e))
+      
 
 @app.get('/htranslate', tags=['Tools'])
 def hozory(text:str, code:str):
