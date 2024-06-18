@@ -15,8 +15,8 @@ headers = {'User-Agent': 'Mozilla/5.0 (Linux; Android 11; Infinix X6816C) AppleW
 
 
 
-from fastapi import FastAPI, FileResponse, HTTPException
-
+from fastapi import HTTPException
+from fastapi.responses import FileResponse
 
 
 
