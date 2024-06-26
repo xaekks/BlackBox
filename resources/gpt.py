@@ -32,7 +32,7 @@ def gpt_func(prompt: str, system: str):
        "messages":[{"role":"user","content": prompt}],
        "key":"","prompt": system
     }
-    response = requests.post(url, headers=headers, json=payload)
+    response = requests.post(api_url, headers=headers, json=payload)
     if response.status_code == 200:
         return { "reply": response.text }
     else:
