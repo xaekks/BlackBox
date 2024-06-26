@@ -256,7 +256,7 @@ async def blackbox(prompt: Prompt):
 
 @app.post("/chatgpt", tags=['AI'])
 async def ChatGPT(data: GptReply):
-     res = await gpt_func(data.prompt, data.system)
+     res = gpt_func(data.prompt, data.system)
      nandha = {**res, **credits}
      return nandha
 
