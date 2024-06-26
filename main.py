@@ -243,7 +243,7 @@ async def imagine_draw(prompt: str):
 @app.post("/nandhaai", tags=['AI'])
 async def nandha_ai(
   request: Request,
-  gemini: str = Form(...),
+  text: str = Form(...),
   role: str = Form(...)
   
   ):
