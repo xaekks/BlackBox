@@ -13,6 +13,7 @@ from resources.fonts import get_fonts
 from resources.grs import GoogleReverseImageSearch
 from resources.insta import saveig
 from resources.code_runner import CodeRunner, run
+from resources.gpt import GptReply, gpt_func
 from resources.trhozory import hozory_translate
 from resources.stack import search_stackoverflow
 from resources.gemini import gemini_func, Gemini
@@ -249,6 +250,16 @@ async def blackbox(prompt: Prompt):
      res = await balckbox_requests(prompt.prompt)
      nandha = {**res, **credits}
      return nandha
+
+
+
+
+@app.post("/chatgpt", tags=['AI'])
+async def ChatGPT(data: GptReply):
+     res = await gpt_func(data.prompt, data.system)
+     nandha = {**res, **credits}
+     return nandha
+
 
 @app.get("/ai/{model}/{prompt}", tags=['AI'])
 async def ai_models(model: str , prompt: str):
