@@ -21,7 +21,7 @@ from resources.truth_dare import truth_string, dare_string
 from resources.pinterest import pin, get_pinterest_video_url
 from resources.gogo import get_source
 
-from fastapi import FastAPI, HTTPException, File, UploadFile
+from fastapi import FastAPI, HTTPException, File, UploadFile, Form
 
 from fastapi.responses import FileResponse, Response 
 from fastapi.middleware.cors import CORSMiddleware
@@ -142,7 +142,12 @@ async def translate(query: str, target_lang: str):
         return {"translation": translation, **credits}
 
 @app.post("/run", tags=['Tools'])
-async def run_code(string: CodeRunner):
+async def run_code(
+
+  code: str = Form("print('hello')"),
+  lang: str = Form("python")
+  
+  ):
     """
     `Available Langauges`:
     ```
@@ -159,7 +164,7 @@ async def run_code(string: CodeRunner):
     ruby, rust, samarium, scala, smalltalk, sqlite3, swift, 
     typescript, vlang, vyxal, yeethon, zig```
     """
-    res = await run(string.code, string.lang)
+    res = await run(code, lang)
     nandha = {**res, **credits}
     return nandha
     
@@ -236,8 +241,11 @@ async def imagine_draw(prompt: str):
     return Response(content=nandha, media_type='image/jpeg')
 
 @app.post("/nandhaai", tags=['AI'])
-async def nandha_ai(gemini: Gemini):
-    text, role = gemini.text, gemini.role
+async def nandha_ai(
+  gemini: str = Form(...),
+  role: str = Form(...)
+  
+  ):
     result = await gemini_func(text, role)
     return result
 
@@ -246,8 +254,10 @@ class Prompt(BaseModel):
       prompt: str
 
 @app.post("/blackbox", tags=['AI'])
-async def blackbox(prompt: Prompt):
-     res = await balckbox_requests(prompt.prompt)
+async def blackbox(
+  prompt: str = Form(...)
+):
+     res = await balckbox_requests(prompt)
      nandha = {**res, **credits}
      return nandha
 
@@ -255,8 +265,11 @@ async def blackbox(prompt: Prompt):
 
 
 @app.post("/chatgpt", tags=['AI'])
-async def ChatGPT(data: GptReply):
-     res = gpt_func(data.prompt, data.system)
+async def ChatGPT(
+   prompt: str = Form(...),
+   system: str = Form('helpful friendly chat bot')
+):
+     res = gpt_func(prompt, system)
      nandha = {**res, **credits}
      return nandha
 
