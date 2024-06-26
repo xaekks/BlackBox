@@ -21,7 +21,7 @@ from resources.truth_dare import truth_string, dare_string
 from resources.pinterest import pin, get_pinterest_video_url
 from resources.gogo import get_source
 
-from fastapi import FastAPI, HTTPException, File, UploadFile, Form
+from fastapi import FastAPI, HTTPException, File, UploadFile, Form, Request
 
 from fastapi.responses import FileResponse, Response 
 from fastapi.middleware.cors import CORSMiddleware
@@ -143,7 +143,7 @@ async def translate(query: str, target_lang: str):
 
 @app.post("/run", tags=['Tools'])
 async def run_code(
-
+  request: Request,
   code: str = Form("print('hello')"),
   lang: str = Form("python")
   
@@ -242,6 +242,7 @@ async def imagine_draw(prompt: str):
 
 @app.post("/nandhaai", tags=['AI'])
 async def nandha_ai(
+  request: Request,
   gemini: str = Form(...),
   role: str = Form(...)
   
@@ -255,6 +256,7 @@ class Prompt(BaseModel):
 
 @app.post("/blackbox", tags=['AI'])
 async def blackbox(
+  request: Request,
   prompt: str = Form(...)
 ):
      res = await balckbox_requests(prompt)
@@ -266,6 +268,7 @@ async def blackbox(
 
 @app.post("/chatgpt", tags=['AI'])
 async def ChatGPT(
+  request: Request,
    prompt: str = Form(...),
    system: str = Form('helpful friendly chat bot')
 ):
