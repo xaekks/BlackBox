@@ -30,7 +30,9 @@ async def BlackBox(image, prompt):
     user_id = str(uuid4())
     file_name = user_id + '.jpeg'
     if image and len(image) > 100:
-        image = base64.b64decode(image).decode("utf-8")
+        
+        image = base64.b64decode(image)
+        
         files = {
             'fileName': (None, file_name),
             'userId': (None, user_id),
