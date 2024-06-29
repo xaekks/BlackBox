@@ -267,7 +267,7 @@ async def blackbox(
 @app.post("/blackboxpro", tags=['AI'])
 async def blackbox(
   request: Request,
-  image: str = Form(None)
+  image: str = Form(None),
   prompt: str = Form(...)
 ):
      res = await BalckBox(image, prompt)
