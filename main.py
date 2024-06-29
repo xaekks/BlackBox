@@ -256,7 +256,7 @@ class Prompt(BaseModel):
       prompt: str
 
 @app.post("/blackbox", tags=['AI'])
-async def blackbox(
+async def blackboxText(
   request: Request,
   prompt: str = Form(...)
 ):
@@ -265,7 +265,7 @@ async def blackbox(
      return nandha
 
 @app.post("/blackboxpro", tags=['AI'])
-async def BlackBox(
+async def BlackBoxImage(
   request: Request,
   image: str = Form(None),
   prompt: str = Form(...)
