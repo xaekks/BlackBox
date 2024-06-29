@@ -8,6 +8,7 @@ import os
 from pydantic import BaseModel
 from typing import List
 from resources import anime, quote
+from resources.blackbox import BlackBox
 from resources.tools import balckbox_requests, youtube_dl, imagine, zerochan as get_zerochan, get_couples, translate_text, get_urbandict, get_ai
 from resources.fonts import get_fonts
 from resources.grs import GoogleReverseImageSearch
@@ -260,6 +261,16 @@ async def blackbox(
   prompt: str = Form(...)
 ):
      res = await balckbox_requests(prompt)
+     nandha = {**res, **credits}
+     return nandha
+
+@app.post("/blackboxpro", tags=['AI'])
+async def blackbox(
+  request: Request
+  image: str = Form(None)
+  prompt: str = Form(...)
+):
+     res = await BalckBox(image, prompt)
      nandha = {**res, **credits}
      return nandha
 
