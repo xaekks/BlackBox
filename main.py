@@ -265,12 +265,12 @@ async def blackbox(
      return nandha
 
 @app.post("/blackboxpro", tags=['AI'])
-async def blackbox(
+async def BlackBox(
   request: Request,
   image: str = Form(None),
   prompt: str = Form(...)
 ):
-     res = await BalckBox(image, prompt)
+     res = await BlackBox(image, prompt)
      nandha = {**res, **credits}
      return nandha
 
