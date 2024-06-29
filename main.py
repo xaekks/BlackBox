@@ -266,9 +266,7 @@ async def blackboxText(
 
 @app.post("/blackboxpro", tags=['AI'])
 async def BlackBoxImage(
-  request: Request,
-  image: str = Form(''),
-  prompt: str = Form(...)
+  image: str, prompt: str
 ):
      res = await BlackBox(image, prompt)
      nandha = {**res, **credits}
