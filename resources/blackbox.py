@@ -52,6 +52,9 @@ async def BlackBox(image, prompt):
                     "content": response_json['response'] + "\n#\n" + prompt
                 }
             ]
+            reply = await BlackBoxChat(user_id, messages)
+            return reply
+          
         else:
             return {'reply': f'File uploading went wrong status code: {str(response.status_code)}'}
     else:
@@ -61,5 +64,6 @@ async def BlackBox(image, prompt):
                 "content": prompt
             }
         ]
-    reply = await BlackBoxChat(user_id, messages)
-    return reply
+        reply = await BlackBoxChat(user_id, messages)
+        return reply
+    
