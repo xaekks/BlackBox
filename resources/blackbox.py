@@ -3,8 +3,6 @@ from uuid import uuid4
 import requests, re
 import base64
 
-def user_id():
-    return str(uuid4())
 
 def BlackBoxChat(user_id, messages):
     data = {
@@ -29,9 +27,9 @@ def BlackBoxChat(user_id, messages):
 
 
 async def BlackBox(image, prompt):
-    user_id = user_id()
+    user_id = str(uuid4())
     file_name = user_id + '.jpeg'
-    if image:
+    if image and len(image) > 100:
         image = base64.b64decode(image).decode("utf-8")
         files = {
             'fileName': (None, file_name),
