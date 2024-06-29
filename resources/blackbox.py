@@ -4,7 +4,7 @@ import requests, re
 import base64
 
 
-def BlackBoxChat(user_id, messages):
+async def BlackBoxChat(user_id, messages):
     data = {
         "messages": messages,
         "user_id": user_id,
@@ -12,8 +12,10 @@ def BlackBoxChat(user_id, messages):
         "agentMode": {},
         "trendingAgentMode": {},
     }
+  
     headers = {"Content-Type": "application/json"}
     url = "https://www.blackbox.ai/api/chat"
+  
     response = requests.post(url, headers=headers, json=data)
     if response.status_code == 200:
         response_text = response.text
@@ -22,23 +24,25 @@ def BlackBoxChat(user_id, messages):
         if "$~~~$" in text:
             text = re.sub(r'\$~\$.*?\$~\$', '', text, flags=re.DOTALL)
         data = {'reply': text}
+      
         return data
     return {'reply': f'Sorry something went wrong status code: {str(response.status_code)}'}
 
 
 async def BlackBox(image, prompt):
-    user_id = str(uuid4())
+    user_id = str(uuid4())  
     file_name = user_id + '.jpeg'
-    if image and len(image) > 100:
-        
-        image = base64.b64decode(image)
-        
+  
+    if image and len(image) > 50:
+      
         files = {
             'fileName': (None, file_name),
             'userId': (None, user_id),
             'image': (file_name, image, 'image/jpeg')
         }
+      
         api_url = "https://www.blackbox.ai/api/upload"
+      
         response = requests.post(api_url, files=files)
         if response.status_code == 200:
             response_json = response.json()
@@ -57,5 +61,5 @@ async def BlackBox(image, prompt):
                 "content": prompt
             }
         ]
-    reply = BlackBoxChat(user_id, messages)
+    reply = await BlackBoxChat(user_id, messages)
     return reply
