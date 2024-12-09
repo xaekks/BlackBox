@@ -2,7 +2,7 @@ from pydantic import BaseModel
 import requests
 import json
 
-API_KEY = "AIzaSyCV7FjStkDviA_Evd20rNRoB1dL5kDQzeg"
+API_KEY = "7FjStkDviA_Evd20rNRoB1dL5kDQzeg"
 API_URL = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={API_KEY}"
 
 
