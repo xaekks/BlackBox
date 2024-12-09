@@ -20,7 +20,6 @@ from resources.stack import search_stackoverflow
 from resources.gemini import gemini_func, Gemini
 from resources.truth_dare import truth_string, dare_string
 from resources.pinterest import pin, get_pinterest_video_url
-from resources.gogo import get_source
 
 from fastapi import FastAPI, HTTPException, File, UploadFile, Form, Request
 
@@ -294,15 +293,6 @@ async def ai_models(model: str , prompt: str):
 
 ####################################################################################################################################
 
-
-@app.get("/gogosource/{episode_id}", include_in_schema=False)
-async def gogosource(episode_id: str):
-    try:
-         res = get_source(episode_id)
-         nandha = {**res, **credits}
-         return nandha
-    except Exception as e:
-        return {error : e.message}
 
       
 
