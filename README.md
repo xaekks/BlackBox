@@ -2,4 +2,4 @@
 
 
 **Group**: https://t.me/nandhaSupport
-**Channel**: htpps://t.me/nandhaBots
+**Channel**: https://t.me/nandhaBots
