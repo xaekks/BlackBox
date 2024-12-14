@@ -10,9 +10,8 @@ This is an unofficial API for BlackBox AI. It provides a way to interact with Bl
 
 
 
-## Features
-- Interact with BlackBox AI And Some Extra Feature See Docs For More 
-- Simple API endpoints for various AI functionalities
+## <img src="https://img.icons8.com/?size=100&id=DNFMlK5kYx4j&format=png&color=000000" width="20" style="vertical-align: middle;"> Overview
+
 
 ## 🛠️ Getting Started
 
