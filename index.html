@@ -41,15 +41,15 @@
             margin: 20px 0;
         }
 
-        .feature {
-            background: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            padding: 20px;
-            margin: 10px;
-            flex: 1 1 30%; /* Flex-grow, flex-shrink, flex-basis */
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            transition: transform 0.2s;
+        ..feature {
+    background: linear-gradient(to bottom right, rgba(0, 0, 0, 0.8), rgba(0, 0, 128, 0.8)); /* Black to blue gradient */
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px; /* Reduced padding */
+    margin: 5px; /* Reduced margin */
+    flex: 1 1 15%; /* Adjusted flex-basis */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
         }
 
         .feature:hover {
