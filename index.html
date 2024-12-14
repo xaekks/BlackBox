@@ -7,22 +7,23 @@
     <style>
         /* General Styles */
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
             line-height: 1.6;
             margin: 0;
             padding: 0;
-            background: linear-gradient(115deg, #160a08, #57302a); /* Updated background */
-            color: #fff; /* Changed text color to white for better contrast */
+            background: linear-gradient(135deg, #160a08, #57302a);
+            color: #fff;
         }
 
         header {
-            padding: 20px;
+            padding: 30px 20px;
             text-align: center;
         }
 
         h1 {
             margin: 0;
-            font-size: 2.5em;
+            font-size: 3em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
         }
 
         p {
@@ -32,42 +33,46 @@
         /* Main Section Styles */
         main {
             padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .features {
             display: flex;
             justify-content: space-around;
             flex-wrap: wrap;
-            margin: 20px 0;
+            margin: 40px 0;
         }
 
         .feature {
-            background: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            padding: 10px;
-            margin: 5px;
-            flex: 1 1 30%; /* Flex-grow, flex-shrink, flex-basis */
-            box-shadow: 0px 0px 20px 10px rgba(0, 0, 255, 0.5);
-            transition: transform 0.2s;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 10px;
+            flex: 1 1 calc(33.333% - 20px);
+            box-shadow: 0 0 20px 10px rgba(0, 0, 255, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .feature:hover {
             transform: scale(1.05);
+            box-shadow: 0 0 25px 12px rgba(0, 0, 255, 0.3);
         }
 
         .feature h2 {
-            color: #007bff;
+            color: #4cc9f0;
+            margin-top: 0;
         }
 
         .feature a {
             display: inline-block;
-            margin-top: 10px;
-            padding: 10px 15px;
+            margin-top: 15px;
+            padding: 10px 20px;
             background: #007bff;
             color: #fff;
             text-decoration: none;
             border-radius: 5px;
+            transition: background 0.3s ease;
         }
 
         .feature a:hover {
@@ -76,25 +81,39 @@
 
         /* Contact Section Styles */
         .contact {
-            background: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
-            padding: 20px;
-            border-radius: 5px;
-            margin-top: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 10px;
+            margin-top: 40px;
         }
 
         .contact h2 {
+            color: #4cc9f0;
+        }
+
+        .contact a {
             color: #007bff;
+            text-decoration: none;
+        }
+
+        .contact a:hover {
+            text-decoration: underline;
         }
 
         /* Footer Styles */
         footer {
             text-align: center;
-            padding: 10px;
-            background: rgba(0, 0, 0, 0.8); /* Semi-transparent black background */
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.8);
             color: #fff;
-            position: relative;
-            bottom: 0;
-            width: 100%;
+            margin-top: 40px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .feature {
+                flex: 1 1 100%;
+            }
         }
     </style>
 </head>
@@ -127,5 +146,11 @@
         <section class="contact">
             <h2>Contact</h2>
             <p>「 𓆩•𝐊𝐢𝐬𝐬𝐮 💞•𓆪 」</p>
-            <p>Have a question or need help? Reach out on
-                <a href="https://t.me/xaekks>
+            <p>Have a question or need help? Reach out on <a href="https://t.me/xaekks">Telegram</a></p>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2023 Geminsta API (Unofficial). All rights reserved.</p>
+    </footer>
+</body>
+</html>
