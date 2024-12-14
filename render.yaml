@@ -1,7 +1,7 @@
 services:
   # A Docker web service
   - type: web
-    name: nandha-api
+    name: geminsta-api
     runtime: python
     runtimeVersion: 3.8.2  # Specify the Python version here
     plan: free
