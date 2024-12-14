@@ -7,7 +7,7 @@ import os
 
 from pydantic import BaseModel
 from typing import List
-from resources import anime, quote
+from resources import quote
 from resources.blackbox import BlackBox
 from resources.tools import balckbox_requests, youtube_dl, imagine, zerochan as get_zerochan, get_couples, translate_text, get_urbandict, get_ai
 from resources.fonts import get_fonts
@@ -211,11 +211,6 @@ async def anime_quote():
    url = random.choice(quote.anime_quote_url)
    return { "url": url, **credits}
     
-@app.get("/neko", tags=['Anime'])
-async def neko():
-    url = random.choice(anime.neko)
-    nandha = {"url": url, **credits}
-    return nandha
     
 
 @app.get("/couples", tags=['Anime'])
