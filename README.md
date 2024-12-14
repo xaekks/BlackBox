@@ -38,11 +38,7 @@ To start the API server, run:
 python main.py
 ```
 
-The server will start, and you can then make requests to the API endpoints.
-
-## API Endpoints
-- `/chat`: Endpoint for interacting with the AI chat functionality
-- (Add other endpoints as they are implemented in the project)
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy)
 
 ## 🤝 Contribute
 We welcome contributions from my side. Whether you're adding new providers or features, or simply fixing typos and making small improvements, your input is valued. Creating a pull request is all it takes – I will handle the code review process. Once all changes have been addressed, we'll merge the pull request into the main branch and release the updates at a later time.
