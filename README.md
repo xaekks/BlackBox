@@ -39,8 +39,8 @@ The server will start, and you can then make requests to the API endpoints.
 We welcome contributions from my side. Whether you're adding new providers or features, or simply fixing typos and making small improvements, your input is valued. Creating a pull request is all it takes – I will handle the code review process. Once all changes have been addressed, we'll merge the pull request into the main branch and release the updates at a later time.
 
 
-## Disclaimer
-This is an unofficial API and is not affiliated with or endorsed by the official BlackBox AI team.
+> [!WARNING]
+> This is an unofficial API and is not affiliated with or endorsed by the official BlackBox AI team.
 
 ## 📄 License
 
