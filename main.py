@@ -40,7 +40,7 @@ app.add_middleware(
 )
 
 
-credits = {'credits': 'Nandha API'}
+credits = {'credits': 'GeminstAPI'}
 
 
 @app.get("/", include_in_schema=False)
