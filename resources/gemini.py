@@ -35,5 +35,5 @@ async def gemini_func(text: str, role: str):
     if data.get('candidates') and data['candidates'][0].get('content'):
         return {"reply": data['candidates'][0]['content']['parts'][0]['text']}
     else:
-        return {"reply": "Sorry Mortal I've Got Some Error Report in Support Chat"}
+        return {"reply": "Sorry Buddh I've Got Some Error Report in Support Chat"}
 
