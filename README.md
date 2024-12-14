@@ -12,7 +12,7 @@ This is an unofficial API for BlackBox AI. It provides a way to interact with Bl
 
 
 ## Features
-- Interact with BlackBox AI
+- Interact with BlackBox AI And Some Extra Feature See Docs For More 
 - Simple API endpoints for various AI functionalities
 
 ## 🛠️ Getting Started
@@ -32,11 +32,7 @@ To use this API, you need to have Python installed on your system. Then, follow 
    pip install -r requirements.txt
    ```
 
-## Usage
-To start the API server, run:
-```
-python main.py
-```
+
 
 [![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy)
 
