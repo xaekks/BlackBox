@@ -1,6 +1,6 @@
 
 ## <img src="https://img.icons8.com/?size=100&id=12150&format=png&color=000000" width="30" style="vertical-align: middle;"> Overview
-This is an unofficial API for BlackBox AI. It provides a way to interact with BlackBox AI's capabilities through a simple API interface.
+This is an unofficial API. It provides a way to interact with Many capabilities through a simple API interface.
 
 
 <div id="top"></div>
@@ -23,7 +23,7 @@ To use this API, you need to have Python installed on your system. Then, follow 
    ```
 2. Navigate to the project directory:
    ```
-   cd BlackBox-Unofficial-Api
+   cd GeminstaApi
    ```
 3. Install the required dependencies:
    ```
@@ -32,14 +32,14 @@ To use this API, you need to have Python installed on your system. Then, follow 
 
 
 
-[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/xaekks/BlackBox-Unofficial-Api)
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/xaekks/GeminstaApi)
 
 ## 🤝 Contribute
 We welcome contributions from my side. Whether you're adding new providers or features, or simply fixing typos and making small improvements, your input is valued. Creating a pull request is all it takes – I will handle the code review process. Once all changes have been addressed, we'll merge the pull request into the main branch and release the updates at a later time.
 
 
 > [!WARNING]
-> This is an unofficial API and is not affiliated with or endorsed by the official BlackBox AI team.
+> This is an unofficial API and is not affiliated with or endorsed by the any official team.
 
 ## 📄 License
 
@@ -50,7 +50,7 @@ We welcome contributions from my side. Whether you're adding new providers or fe
     </td>
     <td> 
       <img src="https://img.shields.io/badge/License-GNU_GPL_v3.0-red.svg"/> <br> 
-This project is licensed under <a href="https://github.com/xaekks/BlackBox-Unofficial-Api/blob/main/LICENSE">GNU_GPL_v3.0</a>.
+This project is licensed under <a href="https://github.com/xaekks/GeminstaApi/blob/main/LICENSE">GNU_GPL_v3.0</a>.
     </td>
   </tr>
 </table>
@@ -65,7 +65,7 @@ This project is licensed under <a href="https://github.com/xaekks/BlackBox-Unoff
 
 For any questions or issues, please open an issue in this repository.
 
-Thank you for your interest in the BlackBox-Unofficial-Api!
+Thank you for your interest in the GeminstaApi!
 
 <p align="center">
 <a href="https://telegram.me/xaekks"><img src="https://img.shields.io/badge/-Contact%20Me-black.svg?style=for-the-badge&logo=Telegram" width="200" height="38.5"/></a>
@@ -74,4 +74,4 @@ Thank you for your interest in the BlackBox-Unofficial-Api!
 <a href="https://telegram.me/kissubots"><img src="https://img.shields.io/badge/-Support%20Channel-black.svg?style=for-the-badge&logo=Telegram" width="200" height="38.5"/></a>
 </p>
 
-<p align="right">(<a href="#top">🔼 Back to top</a>)</p>
+<p align="right">(<a href="#top"> Back to top 🔝</a>)</p>
