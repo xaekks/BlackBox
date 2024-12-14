@@ -1,6 +1,6 @@
 
-## <img src="https://img.icons8.com/?size=100&id=12150&format=png&color=000000" alt="Overview Icon" width="20" style="vertical-align: middle;"> Overview
->This is an unofficial API for BlackBox AI. It provides a way to interact with BlackBox AI's capabilities through a simple API interface.
+## <img src="https://img.icons8.com/?size=100&id=12150&format=png&color=000000" width="20" style="vertical-align: middle;"> Overview
+This is an unofficial API for BlackBox AI. It provides a way to interact with BlackBox AI's capabilities through a simple API interface.
 
 
 <div id="top"></div>
