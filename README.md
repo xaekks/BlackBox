@@ -1,13 +1,7 @@
-# nandha-api
+## Currently I Am Working On This Api To Make It More Better 
 
-
-**Group**: https://t.me/nandhaSupport
-**Channel**: https://t.me/nandhaBots
 
 ```
-This api is abandoned means not maintained and I'm not using it too. incase it might have errors. 
+I Will Take Care Of This Repository Once I Made This
+
 ```
-
-**Please checkout my awesome [@GojoAssistantBot](https://t.me/GojoAssistantBot) 💖**
-
-**Thank you 🐼**
