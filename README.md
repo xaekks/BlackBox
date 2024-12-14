@@ -3,11 +3,20 @@
 ## Overview
 This is an unofficial API for BlackBox AI. It provides a way to interact with BlackBox AI's capabilities through a simple API interface.
 
+
+<div id="top"></div>
+
+> [!IMPORTANT]
+> By using this repository or any code related to it, you agree to the [legal notice](LEGAL_NOTICE.md). The author is **not responsible for the usage of this repository nor endorses it**, nor is the author responsible for any copies, forks, re-uploads made by other users, or anything else related to This Repository to. This is the author's only account and repository. To prevent impersonation or irresponsible actions, please comply with the GNU GPL license this Repository uses.
+
+
+
 ## Features
 - Interact with BlackBox AI
 - Simple API endpoints for various AI functionalities
 
-## Installation
+## 🛠️ Getting Started
+
 To use this API, you need to have Python installed on your system. Then, follow these steps:
 
 1. Clone the repository:
