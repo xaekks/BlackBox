@@ -35,16 +35,34 @@ The server will start, and you can then make requests to the API endpoints.
 - `/chat`: Endpoint for interacting with the AI chat functionality
 - (Add other endpoints as they are implemented in the project)
 
-## Contributing
-Contributions to improve the API are welcome. Please feel free to fork the repository, make your changes, and submit a pull request.
+## 🤝 Contribute
+We welcome contributions from my side. Whether you're adding new providers or features, or simply fixing typos and making small improvements, your input is valued. Creating a pull request is all it takes – I will handle the code review process. Once all changes have been addressed, we'll merge the pull request into the main branch and release the updates at a later time.
+
 
 ## Disclaimer
 This is an unofficial API and is not affiliated with or endorsed by the official BlackBox AI team.
 
-## License
-(https://github.com/xaekks/BlackBox-Unofficial-Api/blob/main/LICENSE.txt)
+## 📄 License
+
+<table>
+  <tr>
+     <td>
+       <p align="center"> <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/GPLv3_Logo.svg/1200px-GPLv3_Logo.svg.png" width="80%"></img>
+    </td>
+    <td> 
+      <img src="https://img.shields.io/badge/License-GNU_GPL_v3.0-red.svg"/> <br> 
+This project is licensed under <a href="https://github.com/xaekks/BlackBox-Unofficial-Api/blob/main/LICENSE">GNU_GPL_v3.0</a>.
+    </td>
+  </tr>
+</table>
+
+---
+
+
 
 ## Contact
 For any questions or issues, please open an issue in this repository.
 
 Thank you for your interest in the BlackBox-Unofficial-Api!
+
+<p align="right">(<a href="#top">🔼 Back to top</a>)</p>
